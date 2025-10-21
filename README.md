@@ -36,13 +36,13 @@ Antes de clonar el proyecto, asegurate de tener lo siguiente:
 
 
 2. Instalar dependencias (Frontend)
-    ´´´bash
+    ```bash
     cd frontend
     npm install axios react-router-dom
 
 
 3. Instalar dependencias (Backend)
-    ´´´bash
+    ```bash
     cd ../backend
     npm install
 
@@ -52,19 +52,19 @@ Antes de clonar el proyecto, asegurate de tener lo siguiente:
 1. Abre pgadmin4
 
 2. Crea la base de datos maxware_db y crea la tabla Productos
-    ´´´bash
+    ```bash
     CREATE TABLE Productos (
 	id serial PRIMARY KEY,
 	nombre VARCHAR(100) NOT NULL,
 	precio DECIMAL (10 ,2) NOT NULL,
 	descripcion TEXT,
 	stock INT DEFAULT 0
-);
+    );
 
 
 3. Crea un archivo .env dentro de la carpeta backend con tus credenciales
-    ´´´bash
-    PORT=5000
+    ```bash
+    PORT=4000
     PGHOST=localhost
     PGUSER=postgres
     PGPASSWORD=tu_contraseña
@@ -73,12 +73,12 @@ Antes de clonar el proyecto, asegurate de tener lo siguiente:
 
 
 4. Para iniciar el servidor, ejecuta esto dentro de la carpeta backend
-    ´´´bash
+    ```bash
     npm start o node index.js
 
 
 5. Para ejecutar el cliente, ejecuta esto dentro de la carpeta frontend
-    ´´´bash
+    ```bash
     npm start
 
 
