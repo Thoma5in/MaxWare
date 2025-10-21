@@ -1,0 +1,14 @@
+.home-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.home-container button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}

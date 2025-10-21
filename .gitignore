@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.env
+
+# Build outputs
+dist/
+build/
+.cache/
+*.log
+
+# IDEs y editores
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Sistema operativo
+Thumbs.db
+
+# PostgreSQL dumps
+*.sql
+*.dump
+
+# React-specific
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# Backend-specific
+backend/node_modules/
+backend/.env
+backend/build/
