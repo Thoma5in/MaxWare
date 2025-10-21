@@ -34,21 +34,33 @@ Antes de clonar el proyecto, asegurate de tener lo siguiente:
     git clone <URL-del-repositorio>
     cd <nombre-de-la-carpeta>
 
+
 2. Instalar dependencias (Frontend)
     ´´´bash
     cd frontend
     npm install axios react-router-dom
+
 
 3. Instalar dependencias (Backend)
     ´´´bash
     cd ../backend
     npm install
 
+
 ## Configuración de base de datos
 
 1. Abre pgadmin4
 
-2. Crea la base de datos maxware_db
+2. Crea la base de datos maxware_db y crea la tabla Productos
+    ´´´bash
+    CREATE TABLE Productos (
+	id serial PRIMARY KEY,
+	nombre VARCHAR(100) NOT NULL,
+	precio DECIMAL (10 ,2) NOT NULL,
+	descripcion TEXT,
+	stock INT DEFAULT 0
+);
+
 
 3. Crea un archivo .env dentro de la carpeta backend con tus credenciales
     ´´´bash
@@ -59,6 +71,28 @@ Antes de clonar el proyecto, asegurate de tener lo siguiente:
     PGDATABASE=maxware_db
     PGPORT=5432
 
-4. Desde la carpeta backend ejecuta
+
+4. Para iniciar el servidor, ejecuta esto dentro de la carpeta backend
     ´´´bash
     npm start o node index.js
+
+
+5. Para ejecutar el cliente, ejecuta esto dentro de la carpeta frontend
+    ´´´bash
+    npm start
+
+
+La aplicación se abrirá automaticamente en tu navegador en http://localhost:3000
+
+
+
+## Desarrolladores
+- **Project Leader:** Luis Eduardo Urbano Caicedo
+- **Lead Developer:** Samuel Ospina Velásquez
+- **UX/UI Designer:** Juan David Becerra Ussa
+- **Quality Analyst:** Javier Mauricio Ortiz Millán
+- **Developer**: Fabian Andres Camayo Pesas
+
+## Notas
+- Si hay errores de conexión, revisa las variables del archivo .env
+- Recuerda ejecutar SIEMPRE el backend antes del frontend
