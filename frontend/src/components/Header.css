@@ -1,20 +1,71 @@
 .header {
-  background: #1e3a8a;
-  color: white;
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
   align-items: center;
+  background-color: #7B2D26;
+  padding: 1rem;
+  color: #FFFFFF;
+  flex-shrink: 0; /* evitar que el header se reduzca en el layout flex de la página */
 }
 
-.header ul {
-  list-style: none;
+.header-container {
+  width: 90%;
+  margin: auto;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header a {
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0; /* evita que el logo se reduzca si el contenedor se encoge */
+}
+
+.header-logo img {
+  height: 90px;
+  width: auto;
+}
+
+.header-nav ul {
+   margin: 0 15px;
   color: white;
   text-decoration: none;
+  transition: color 0.3s;
+  display: flex;       /* colocar los items en una fila */
+  gap: 4rem;           /* espacio entre links */
+  list-style: none;    /* quitar viñetas */
+  margin: 0;           /* quitar márgenes por defecto */
+  padding: 0;          /* quitar padding por defecto */
+  align-items: center; /* alinear verticalmente con el logo */
+}
+
+.header-nav ul li {
+  display: inline-block; /* Asegurar que los li no forcen salto de línea */
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #FFFFFF;
   font-weight: bold;
+}
+
+.header-nav a:hover {
+  color: #FFD700;
+}
+
+.header-buttons button {
+  margin-left: 10px;
+  background-color: #F4C542;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header-buttons button:hover {
+  background-color: #f0c400;
 }

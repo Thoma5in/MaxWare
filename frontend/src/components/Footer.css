@@ -1,7 +1,55 @@
 .footer {
-  background: #1e3a8a;
-  color: white;
-  text-align: center;
-  padding: 15px 0;
-  font-size: 0.9rem;
+  background-color: #7B2D26;
+  color: #FFFFFF;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Ajuste del tamaño del logo en el footer */
+.footer-brand img {
+  height: 80px;
+  width: auto;
+}
+
+/* Nuevo: texto del bloque al lado del logo, apilado verticalmente */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+/* Quitar márgenes por defecto en título y párrafos dentro del footer-brand */
+.footer-brand h2,
+.footer-brand p {
+  margin: 0;
+}
+
+.footer-legal,
+.footer-social {
+  min-width: 200px;
+  gap: 1rem;
+}
+
+.social-icons a {
+  margin-right: 1rem;
+}
+
+.social-icons img {
+  height: 30px;
+  width: 24px;
 }
