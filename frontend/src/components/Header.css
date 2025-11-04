@@ -3,13 +3,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #7B2D26;
-  padding: 1rem;
   color: #FFFFFF;
   flex-shrink: 0; /* evitar que el header se reduzca en el layout flex de la página */
 }
 
 .header-container {
-  width: 90%;
+  width: 95%;
   margin: auto;
   display: flex;
   align-items: center;
