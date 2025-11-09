@@ -1,0 +1,113 @@
+/* Fondo general */
+.register-page {
+  background-color: #f8e9d0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Contenedor principal */
+.register-container {
+  background-color: white;
+  width: 320px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Icono o logo superior */
+.register-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #803e2f;
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-icon img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.icon-user {
+  font-size: 2rem;
+  color: white;
+}
+
+/* Título */
+.register-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.register-form label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.register-form input {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #e5e5e5;
+  outline: none;
+}
+
+/* Sección de términos */
+.terms-section {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.terms-section label {
+  font-size: 0.9rem;
+}
+
+/* Botón */
+.register-button {
+  background-color: #f3b832;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #dba726;
+}
+
+/* Enlace inferior */
+.register-links {
+  margin-top: 1rem;
+}
+
+.register-links a {
+  font-size: 0.85rem;
+  color: #444;
+  text-decoration: none;
+}
+
+.register-links a:hover {
+  text-decoration: underline;
+}
