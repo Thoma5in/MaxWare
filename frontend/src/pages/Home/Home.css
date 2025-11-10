@@ -58,14 +58,14 @@ html, body {
 /* Sección Ofrecemos */
 .ofrecemos {
   background-color: #fffaf0;
-  padding: 50px 20px;
+  padding: 40px 20px;
 }
 
 .ofrecemos-container {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
+  gap: 150px;
+  margin-top: 40px;
   flex-wrap: wrap;
 }
 
@@ -74,8 +74,8 @@ html, body {
 }
 
 .ofrecemos-item img {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
   margin-bottom: 10px;
 }
 
