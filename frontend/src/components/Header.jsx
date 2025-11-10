@@ -18,8 +18,8 @@ const Header = () => {
             </nav>
 
         <div className="header-buttons">
-          <button className="btn-login">Iniciar sesión</button>
-          <button className="btn-register">Registrarse</button>
+          <button onClick={() => window.location.href = '/login'} className="btn-login">Iniciar sesión</button>
+          <button onClick={() => window.location.href = '/register'} className="btn-register">Registrarse</button>
         </div>
         </div>
 

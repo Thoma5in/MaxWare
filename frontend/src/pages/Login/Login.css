@@ -1,0 +1,116 @@
+/* Fondo general */
+.login-page {
+  background-color: #f8e9d0; /* color beige claro */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Contenedor principal */
+.login-container {
+  background-color: white;
+  width: 320px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Icono superior */
+.login-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #803e2f; /* marrón oscuro */
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-icon img {
+  width: 80%;       /* ocupa el 80% del círculo */
+  height: 80%;      /* se mantiene proporcional */
+  object-fit: contain; /* o "cover" si prefieres llenar completamente el círculo */
+  border-radius: 50%;  /* opcional si quieres que también sea circular */
+}
+
+.icon-user {
+  font-size: 2rem;
+  color: white;
+}
+
+/* Título */
+.login-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.login-form input {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #e5e5e5;
+  outline: none;
+}
+
+/* Sección de recordar */
+.remember-section {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.remember-section label {
+  font-size: 0.9rem;
+}
+
+/* Botón de acceder */
+.login-button {
+  background-color: #f3b832;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #dba726;
+}
+
+/* Enlaces inferiores */
+.login-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.login-links a {
+  font-size: 0.85rem;
+  color: #444;
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
