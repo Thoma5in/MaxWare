@@ -22,14 +22,16 @@ const ListaProductos = () => {
         <div className="productos-container">
             <h2>Lista de Productos 📦</h2>
             <div className="lista-productos"> 
-            
                 {productos.map(producto => (
-                    <div className="producto" key={producto.id}>
-                    <li key={producto.id}>
-                        <h3>{producto.nombre}</h3>
-                        <p>Descripción: {producto.descripcion}</p>
-                    </li>
-                    </div>
+                    // tarjeta por producto
+                    <article className="producto-card" key={producto.id}>
+                        <div className="producto-card-body">
+                            <h3 className="producto-nombre">{producto.name}</h3>
+                            {producto.price !== undefined && <p className="producto-precio">Precio: ${producto.price}</p>}
+                            <p className="producto-descripcion">{producto.description}</p>
+                            {/* puedes añadir imagen si existe: producto.image */}
+                        </div>
+                    </article>
                 ))}
             </div>
         </div>
