@@ -1,7 +1,36 @@
-import React from 'react';
+import React, {use, useState} from 'react';
+import api from "../../services/api";
 import './Register.css';
 
+
 function Register() {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        if (password !== confirmPassword) {
+            setMessage('Las contraseñas no coinciden');
+            return;
+        }
+        try {
+             // Enviamos todo al backend
+            const response = await api.post('/register', { email, password, username });
+            setMessage(response.data.message || "Usuario registrado con éxito");
+        } catch (error) {
+            if (error.response) {
+                setMessage(` ${error.response.data.error}`)
+            } else {
+                setMessage(" Error al conectar con el servidor.")
+            }
+        }
+    }
+
+
     return (
         <div className = "register-page">
             <div className="register-container">
@@ -11,32 +40,54 @@ function Register() {
 
                 <h2 className="register-title"> Regístrate </h2>
 
-                <form className="register-form">
+                <form className="register-form" onSubmit={handleRegister}>
+
+                    <label htmlFor="email" > Correo electrónico </label>
+                    <input
+                    type = "text"
+                    id = "email"
+                    placeholder="Ingresa tu correo electrónico..."
+                    value = {email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required/>
+
+
                     <label htmlFor="username" > Nombre de usuario </label>
                     <input
                     type = "text"
                     id = "username"
-                    placeholder="Ingresa tu usuario..."/>
+                    placeholder="Ingresa tu usuario..."
+                    value = {username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required/>
 
                     <label htmlFor="password" > Contraseña </label>
                     <input
                     type = "password"
                     id = "password"
-                    placeholder="Ingresa tu contraseña con simbolos y caracteres..."/>
+                    placeholder="Ingresa tu contraseña con simbolos y caracteres..."
+                    value = {password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required/>
 
                     <label htmlFor="confirmPassword" > Confirmar Contraseña </label>
                     <input
                     type = "password"
                     id = "confirmPassword"
-                    placeholder="Confirma tu contraseña..."/>
+                    placeholder="Confirma tu contraseña..."
+                    value = {confirmPassword}
+                    onChange = {(e) => setConfirmPassword(e.target.value)}
+                    required/>
 
                     <div className = "terms-section">
-                        <input type="checkbox" id="terms" />
+                        <input type="checkbox" id="terms" required />
                         <label htmlFor="terms"> Acepto los términos y condiciones </label>
                     </div>
                     
                     <button type = "submit" className="register-button"> Acceder </button>
                 </form>
+
+                {message && <p className="register-message">{message}</p>}
 
                 <div className="register-links">
                     <a href="/login">¿Ya tienes una cuenta? Inicia sesión</a>
