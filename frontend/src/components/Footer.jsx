@@ -23,7 +23,7 @@ const Footer = () => {
                 <p>Terminos y Condiciones</p>
                 <p>Políticas de privacidad</p>
                 <p>Autorización de tratamiento de datos</p>
-                <p><strong>¿Quiénes Somos?</strong></p>
+                <a href="/about-us"><strong>¿Quiénes Somos?</strong></a>
                </div>
                <div className="footer-social">
                 <h3>Mapa del Sitio</h3>

@@ -19,7 +19,7 @@ function Register() {
     }
 
     try {
-      // 1️⃣ Crear usuario en Supabase Auth
+      //  Crear usuario en Supabase Auth
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -33,7 +33,7 @@ function Register() {
 
       const user = data.user;
 
-      // 2️⃣ Crear su perfil en la tabla "profiles"
+      //  Crear su perfil en la tabla "profiles"
       const { error: profileError } = await supabase.from("profiles").insert([
         {
           id: user.id, // mismo id que usa Supabase Auth
@@ -47,7 +47,7 @@ function Register() {
         return;
       }
 
-      // 3️⃣ Confirmación visual
+      //  Confirmación visual
       setMessage("Registro exitoso. Revisa tu correo para confirmar tu cuenta.");
     } catch (err) {
       console.error("Error interno:", err);

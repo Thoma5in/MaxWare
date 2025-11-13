@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import MapaTienda from '../../components/MapaTienda';
 import './Home.css';
 
 const Home = () => {
+
+    const tiendaCoords = {lat: 3.565771, lng: -76.570714}; //Dapa, Yumbo
+
     return (
         
         <div className="home">
@@ -70,17 +74,12 @@ const Home = () => {
              <section className ="ubicacion">
                 <h2> ¿Dónde nos encontramos? </h2>
                 <div className = "map-container">
-                    <iframe
-                        title="Mapa TiendaMax"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.922255473011!2d-74.081749!3d4.609710!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a16e1a28a3%3A0xabc!2sColombia!5e0!3m2!1ses!2sco!4v1670000000000"
-                        width="100%"
-                        height="350"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                    ></iframe>
+                    <MapaTienda />
                 </div>
-                <button className="btn-ubicacion">¡Encuéntranos!</button>
+                <button 
+                onClick={() => window.open(`https://www.google.com/maps?q=${tiendaCoords.lat},${tiendaCoords.lng}`
+                    , '_blank')} 
+                className="btn-ubicacion">¡Encuéntranos!</button>
              </section>
              </div>
         </div>

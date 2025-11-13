@@ -1,0 +1,50 @@
+.about-container {
+  padding: 4rem 8%;
+  background-color: #f8f5e9;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+.about-header h2 {
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.about-header p {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.about-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  flex: 1 1 300px;
+  max-width: 380px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card .icon {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: #a52a2a;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: justify;
+}
