@@ -1,0 +1,27 @@
+.page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content-shifted {
+    margin-left: 300px; /* Ajusta este valor según el ancho del carrito lateral */
+}
+.content-full {
+    margin-left: 0;
+}
+.productos-container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .content-shifted, .content-full {
+        margin-left: 0; /* En pantallas pequeñas, no desplazar el contenido */
+    }
+}

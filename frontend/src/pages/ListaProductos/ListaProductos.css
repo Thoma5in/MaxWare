@@ -1,73 +1,172 @@
 .productos-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: "Poppins", sans-serif;
+    padding: 2rem;
+    max-width: 100%; /* Ajustamos para el layout con sidebar */
+    padding-right: 2rem;
+    font-family: "Poppins", sans-serif;
 }
 
 .productos-container h2 {
-  margin-bottom: 1rem;
-  text-align: left;
-  color: #2c2c2c;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: #2c2c2c;
 }
 
-/* grid responsive de tarjetas */
+/* Grid de tarjetas */
 .lista-productos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  align-items: stretch;
+    display: grid;
+    /* Ajustamos el minmax para que las tarjetas sean más anchas como en la foto */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 20px; /* Aumentamos el gap */
+    align-items: stretch;
+    padding-top: 20px;
 }
 
-/* tarjeta */
+/* ==================================== */
+/* 2. Estilos de la Tarjeta (Card)      */
+/* ==================================== */
+
 .producto-card {
-  background: #ffffff;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .producto-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: none; /* Quitamos el efecto de levantamiento para ser más sobrios */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Imagen del Producto */
+.producto-imagen {
+    width: 100%;
+    height: 180px; /* Altura fija para la imagen */
+    object-fit: cover; /* Ajuste para que la imagen no se distorsione */
 }
 
 .producto-card-body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex: 1;
+    padding: 15px; /* Ajustamos padding */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    text-align: center; /* Centramos el contenido como en la foto */
 }
 
 .producto-nombre {
-  margin: 0;
-  font-size: 1.05rem;
-  color: #8b0000;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
 }
 
 .producto-precio {
-  margin: 0;
-  font-weight: 700;
-  color: #333;
+    /* El precio está en la tarjeta, pero el estilo de la foto no lo muestra */
+    display: none; /* Ocultamos si queremos replicar el estilo de la foto (donde el precio es $0) */
+    font-weight: 700;
+    color: #555;
+    font-size: 1.2rem;
 }
 
 .producto-descripcion {
-  margin: 0.25rem 0 0;
-  color: #444;
-  font-size: 0.95rem;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+    margin: 0.25rem 0 10px;
+    color: #888;
+    font-size: 0.9rem;
+    flex: 1;
+    /* Quitamos el truncado para un mejor aspecto en la tarjeta */
+    overflow: visible; 
+    text-align: center;
 }
 
-/* ajuste en pantallas pequeñas */
-@media (max-width: 480px) {
-  .productos-container { padding: 1rem; }
-  .lista-productos { gap: 0.75rem; grid-template-columns: 1fr; }
+/* Botón "Add to Car" */
+.btn-add-to-cart {
+    background-color: #f0ad4e; /* Tonalidad amarilla/naranja de la foto */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    width: 100%; /* Ocupa todo el ancho */
+    margin-top: 10px;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #ec971f;
+}
+
+/* ==================================== */
+/* 3. Estilos de Filtros                */
+/* ==================================== */
+
+.product-filters-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.filters-right {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.filter-button:hover {
+    background-color: #e0e0e0;
+}
+
+.filter-button.new-button {
+    background-color: #5cb85c; /* Verde para 'New' */
+    color: white;
+    border-color: #5cb85c;
+}
+
+.filter-button.active {
+    background-color: #007bff; /* Azul para el filtro activo */
+    color: white;
+    border-color: #007bff;
+}
+
+/* Ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+    .productos-container {
+        padding: 1rem;
+        margin-left: 0; /* Deshabilita el margen lateral en móviles */
+    }
+    .product-filters-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .filters-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

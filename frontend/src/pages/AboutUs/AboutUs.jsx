@@ -1,8 +1,10 @@
 import React from 'react';
 import "./AboutUs.css";
+import BaseLayout from '../../components/layout';
 
 const AboutUs = () => {
     return (
+        <BaseLayout>
         <div className="about-container">
             <section className="about-header">
                 <h2> Sobre Nosotros </h2>
@@ -47,6 +49,7 @@ const AboutUs = () => {
                 </div>
             </div>
             </div>
+        </BaseLayout>
     )
 }
 

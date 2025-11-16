@@ -1,15 +1,21 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
+// Importar el contexto del carrito
+import { useCart } from "../../contexts/CartContext"; 
 
-const Header = () => {
+// Acepta 'toggleCart' como prop
+const Header = ({ toggleCart }) => { 
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  // Obtener la información del carrito
+  const { cartItems } = useCart(); 
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const handleLogout = async () => {
-    await signOut();   // Cierra sesión en Supabase
-    navigate("/");     // Redirige al inicio
+    await signOut(); // Cierra sesión en Supabase
+    navigate("/"); // Redirige al inicio
   };
 
   return (
@@ -29,8 +35,20 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* AUTH BUTTONS */}
+        {/* AUTH BUTTONS & CART BUTTON */}
         <div className="header-buttons">
+          
+          {/* BOTÓN DEL CARRITO */}
+          {toggleCart && (
+            <button 
+            className="cart-icon-button"
+            onClick={toggleCart} // Llama a la función que abre/cierra el carrito
+          >
+            <span role="img" aria-label="Carrito de compras">🛒</span>
+            {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+          </button>)}
+          
+          {/* Botones de Autenticación Existentes */}
           {user ? (
             <>
               <span className="welcome-text">

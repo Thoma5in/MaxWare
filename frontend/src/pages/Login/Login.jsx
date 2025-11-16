@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../services/supabaseClient";
+import BaseLayout from "../../components/layout";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ function Login() {
   };
 
   return (
+    <BaseLayout>
     <div className="login-page">
       <div className="login-container">
         <div className="login-icon">
@@ -76,6 +78,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </BaseLayout>
   );
 }
 
