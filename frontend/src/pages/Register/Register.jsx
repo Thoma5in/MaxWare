@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { supabase } from "../../services/supabaseClient";
+import BaseLayout from "../../components/layout";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -56,6 +57,7 @@ function Register() {
   };
 
   return (
+    <BaseLayout>
     <div className="register-page">
       <div className="register-container">
         <div className="register-icon">
@@ -124,6 +126,7 @@ function Register() {
         </div>
       </div>
     </div>
+    </BaseLayout>
   );
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import MapaTienda from '../../components/MapaTienda';
 import './Home.css';
+import BaseLayout from '../../components/layout';
 
 const Home = () => {
 
@@ -9,6 +10,7 @@ const Home = () => {
 
     return (
         
+        <BaseLayout>
         <div className="home">
             <div className="home-container">
              {/* Sección de Bienvenida */}
@@ -83,6 +85,8 @@ const Home = () => {
              </section>
              </div>
         </div>
+        </BaseLayout>
+
     
     )
 }
