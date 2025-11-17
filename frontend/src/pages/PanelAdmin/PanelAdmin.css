@@ -1,0 +1,142 @@
+/* Contenedor principal */
+.admin-container {
+  font-family: "Poppins", sans-serif;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Título */
+.admin-container h1 {
+  margin-bottom: 1rem;
+  color: #2c2c2c;
+}
+
+/* Formulario estilo tarjeta (similar a Login/Register) */
+.admin-form {
+  background-color: #ffffff;
+  max-width: 420px;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Inputs y textarea */
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form textarea,
+.admin-form input[type="file"] {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.admin-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Botón agregar */
+.admin-form button[type="submit"] {
+  background-color: #f3b832;
+  color: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-form button[type="submit"]:hover {
+  background-color: #dba726;
+}
+
+/* Lista de productos (grid) */
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* Tarjeta de producto en admin */
+.product-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f5f5f5;
+}
+
+.product-card h3 {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.product-card p {
+  margin: 0;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Botones dentro de la tarjeta */
+.product-card button {
+  margin-top: 0.6rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.product-card button:hover {
+  background-color: #c43a2e;
+}
+
+/* Responsive: formulario y lista apilados en pantallas pequeñas */
+@media (max-width: 900px) {
+  .admin-container {
+    padding: 1rem;
+  }
+  .products-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-form {
+    padding: 1rem;
+  }
+  .product-card img {
+    height: 110px;
+  }
+}

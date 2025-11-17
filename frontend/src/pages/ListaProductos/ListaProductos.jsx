@@ -9,11 +9,12 @@ const ListaProductos = () => {
     const { addToCart } = useCart(); 
     // Estado para manejar el filtro de ordenamiento
     const [ordenamiento, setOrdenamiento] = useState('none'); 
+    
 
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
-                // Asumo que 'api' ya está configurado para llamar a tu endpoint /productos
+                // Llamando a tu endpoint /productos
                 const respuesta = await api.get('/productos');
                 console.log(respuesta.data);
                 setProductos(respuesta.data);
@@ -73,7 +74,7 @@ const ListaProductos = () => {
                         {/* 1. Imagen del producto */}
                         {/* Asumo que 'image' es una URL a la imagen */}
                         <img 
-                            src={producto.image || 'placeholder.jpg'} 
+                            src={producto.image_url || 'placeholder.jpg'} 
                             alt={producto.name} 
                             className="producto-imagen"
                         />

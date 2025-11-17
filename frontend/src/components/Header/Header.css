@@ -69,6 +69,21 @@
   background-color: #f0c400;
 }
 
+.admin-btn {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background: #F4C542;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+
+.admin-btn:hover {
+  background: #f0c400;
+}
+
 .cart-icon-button{
   background: none;
   border: none;

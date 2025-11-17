@@ -28,7 +28,7 @@ const ShoppingCart = ({isVisible, onClose}) => {
             ) : (
                 cartItems.map((item) => (
                     <div key={item.id} className="cart-item">
-                        <img src={item.image} alt={item.name} className="item-img" />
+                        <img src={item.image_url} alt={item.name} className="item-img" />
                         <div className="item-details">
                             <p className="item-name">{item.name}</p>
                             <p className="item-price">${item.price} c/u</p>
@@ -44,7 +44,7 @@ const ShoppingCart = ({isVisible, onClose}) => {
         </div>
         {cartItems.length > 0 && (
             <div className="cart-summary">
-                <p>subtotal:</p>
+                <p>Subtotal:</p>
                 <p className="total-amount">${cartTotal.toFixed(2)}</p>
             </div>
         )}

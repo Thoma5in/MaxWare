@@ -8,6 +8,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import AboutUs from './pages/AboutUs/AboutUs';
 import ListaProductos from './pages/ListaProductos/ListaProductos';
+import AdminRoute from './routes/AdminRoute';
+import PanelAdmin from './pages/PanelAdmin/PanelAdmin';
 import { CartProvider } from './contexts/CartContext';
 import ProductsPage from './pages/ProductsPage';
 
@@ -21,6 +23,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<ProductsPage />} />
           <Route path="/login" element={<Login />} />
+
+          {/* Protección de admins*/}
+          <Route path="/admin" element={
+            <AdminRoute>
+              <PanelAdmin />
+            </AdminRoute>
+          } />
+
           <Route path="/register" element={<Register />} />
           <Route path="/about-us" element={<AboutUs />} />
         

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {use, useEffect, useState} from "react";
+import { supabase } from "../../services/supabaseClient";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { useAuth } from "../../contexts/AuthContext";
@@ -7,6 +8,8 @@ import { useCart } from "../../contexts/CartContext";
 
 // Acepta 'toggleCart' como prop
 const Header = ({ toggleCart }) => { 
+  const [User, setUser] = useState(null);
+  const [role, setRole] = useState(null);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   // Obtener la información del carrito
@@ -17,6 +20,26 @@ const Header = ({ toggleCart }) => {
     await signOut(); // Cierra sesión en Supabase
     navigate("/"); // Redirige al inicio
   };
+
+  // Obtener el rol del usuario desde Supabase
+  useEffect(() => {
+    const getSession = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data.user);
+
+      if (data.user) {
+        const { data: profile} = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
+        .single();
+
+        if (profile) setRole(profile.role);
+
+      }
+    }
+    getSession();
+  }, []);
 
   return (
     <header className="header">
@@ -57,6 +80,12 @@ const Header = ({ toggleCart }) => {
                   user.email.split("@")[0] ||
                   "Usuario"}
               </span>
+               {/* Mostrar solo si es admin */}
+              {role === "admin" && (
+                <Link to="/admin" className="admin-btn">
+                  Panel Admin
+                </Link>
+              )}
               <button onClick={handleLogout} className="btn-logout">
                 Cerrar sesión
               </button>
