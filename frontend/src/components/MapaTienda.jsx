@@ -6,7 +6,7 @@ import L from 'leaflet';
 
 const tiendaIcon = new L.Icon({
     iconUrl: '/assets/logo-tiendamax.png',
-    iconSize: [40, 40],
+    iconSize: [60, 60],
 })
 
 
@@ -14,7 +14,7 @@ const MapaTienda = () => {
     const tiendaCoords = [3.565771, -76.570714]; //Dapa, Yumbo
 
     return (
-        <div style = {{ width: '100%', height: '350px', borderRadius: '12px', overflow: 'hidden' }}>
+        <div style = {{ width: '99%', height: '350px', borderRadius: '12px', overflow: 'hidden' }}>
             <MapContainer 
             center={tiendaCoords} 
             zoom={15} 
