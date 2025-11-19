@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../services/supabaseClient';
+import { validatePrice, validateStock } from './validation';
 import './PanelAdmin.css';
 
 function PanelAdmin() {
     const [products, setProducts] = useState([]);
+    const [imageFile, setImageFile] = useState(null);
     const [form, setForm] = useState({
         name: '',
         price: '',
         description: '',
-        image_url: ''
+        image_url: '',
+        stock: ''
     })
 
     // Estado del tema
@@ -45,43 +48,67 @@ function PanelAdmin() {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    //Subir imagen al storage
-    const handleImageUpload = async (e) => {
+    //Manejar selección de imagen
+    const handleImageUpload = (e) => {
         const file = e.target.files[0];
-        const fileName = `${Date.now()}-${file.name}`
-
-        const { data, error } = await supabase.storage
-            .from('products')
-            .upload(fileName, file);
-
-        if (error) {
-            console.error(error)
-            return
+        if (file) {
+            setImageFile(file);
         }
-
-        //Obtener URL pública
-        const { data: publicUrl } = supabase.storage
-            .from('products')
-            .getPublicUrl(fileName);
-
-        setForm({ ...form, image_url: publicUrl.publicUrl });
     }
-
 
     //Crear producto en Supabase
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const { error } = await supabase.from('products').insert([form]);
+        const priceError = validatePrice(form.price);
+        if (priceError) {
+            alert(priceError);
+            return;
+        }
+
+        const stockError = validateStock(form.stock);
+        if (stockError) {
+            alert(stockError);
+            return;
+        }
+
+        let imageUrl = '';
+
+        if (imageFile) {
+            const fileName = `${Date.now()}-${imageFile.name}`
+            const { data, error: uploadError } = await supabase.storage
+                .from('products')
+                .upload(fileName, imageFile);
+
+            if (uploadError) {
+                console.error(uploadError);
+                alert('Error al subir la imagen');
+                return;
+            }
+
+            const { data: publicUrl } = supabase.storage
+                .from('products')
+                .getPublicUrl(fileName);
+
+            imageUrl = publicUrl.publicUrl;
+        }
+
+        const productData = { ...form, image_url: imageUrl };
+
+        const { error } = await supabase.from('products').insert([productData]);
         if (!error) {
             setForm({
                 name: '',
                 price: '',
                 description: '',
                 image_url: '',
-                stock: 0
+                stock: ''
             });
+            setImageFile(null);
+            e.target.reset(); // Reset file input
             fetchProducts();
+        } else {
+            alert('Error al crear el producto: ' + error.message);
         }
     }
 
@@ -150,6 +177,7 @@ function PanelAdmin() {
                         <img src={p.image_url} alt={p.name} />
                         <h3>{p.name}</h3>
                         <p>${p.price}</p>
+                        <p>Stock: {p.stock}</p>
 
                         <button onClick={() => deleteProducts(p.id)}>Eliminar</button>
                     </div>
