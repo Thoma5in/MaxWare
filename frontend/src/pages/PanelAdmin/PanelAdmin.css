@@ -1,30 +1,89 @@
-/* Contenedor principal */
+/* Variables CSS para temas */
 .admin-container {
+  --bg-color: #f4f6f8;
+  --text-color: #2c2c2c;
+  --card-bg: #ffffff;
+  --input-bg: #fafafa;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.06);
+  --primary-color: #f3b832;
+  --primary-hover: #dba726;
+  --delete-btn: #e74c3c;
+  --delete-hover: #c43a2e;
+
   font-family: "Poppins", sans-serif;
-  max-width: 1100px;
-  margin: 2rem auto;
+  width: 100%;
+
   padding: 1rem;
   box-sizing: border-box;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Título */
-.admin-container h1 {
+/* Tema Oscuro */
+.admin-container.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --card-bg: #2d2d2d;
+  --input-bg: #333333;
+  --border-color: #444444;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --primary-color: #f3b832;
+  /* Mantener o ajustar según preferencia */
+  --primary-hover: #dba726;
+}
+
+/* Header con título y botón */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
-  color: #2c2c2c;
 }
 
-/* Formulario estilo tarjeta (similar a Login/Register) */
+.admin-header h1 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Botón de tema */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--input-bg);
+}
+
+/* Formulario estilo tarjeta */
 .admin-form {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   max-width: 420px;
   width: 100%;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px var(--shadow-color);
   margin-bottom: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  transition: background-color 0.3s ease;
 }
 
 /* Inputs y textarea */
@@ -34,12 +93,14 @@
 .admin-form input[type="file"] {
   width: 100%;
   padding: 0.65rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--input-bg);
+  color: var(--text-color);
   outline: none;
   font-size: 0.95rem;
   box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .admin-form textarea {
@@ -49,7 +110,7 @@
 
 /* Botón agregar */
 .admin-form button[type="submit"] {
-  background-color: #f3b832;
+  background-color: var(--primary-color);
   color: #1f1f1f;
   border: none;
   border-radius: 8px;
@@ -60,7 +121,7 @@
 }
 
 .admin-form button[type="submit"]:hover {
-  background-color: #dba726;
+  background-color: var(--primary-hover);
 }
 
 /* Lista de productos (grid) */
@@ -73,16 +134,17 @@
 
 /* Tarjeta de producto en admin */
 .product-card {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 12px var(--shadow-color);
   padding: 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
   text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .product-card img {
@@ -90,25 +152,26 @@
   height: 140px;
   object-fit: cover;
   border-radius: 6px;
-  background: #f5f5f5;
+  background: var(--input-bg);
 }
 
 .product-card h3 {
   margin: 0.35rem 0 0;
   font-size: 1rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 .product-card p {
   margin: 0;
-  color: #666;
+  color: var(--text-color);
+  opacity: 0.8;
   font-weight: 600;
 }
 
 /* Botones dentro de la tarjeta */
 .product-card button {
   margin-top: 0.6rem;
-  background-color: #e74c3c;
+  background-color: var(--delete-btn);
   color: white;
   border: none;
   padding: 0.5rem 0.75rem;
@@ -119,14 +182,15 @@
 }
 
 .product-card button:hover {
-  background-color: #c43a2e;
+  background-color: var(--delete-hover);
 }
 
-/* Responsive: formulario y lista apilados en pantallas pequeñas */
+/* Responsive */
 @media (max-width: 900px) {
   .admin-container {
     padding: 1rem;
   }
+
   .products-list {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
@@ -136,6 +200,7 @@
   .admin-form {
     padding: 1rem;
   }
+
   .product-card img {
     height: 110px;
   }
