@@ -12,17 +12,19 @@ import AdminRoute from './routes/AdminRoute';
 import PanelAdmin from './pages/PanelAdmin/PanelAdmin';
 import { CartProvider } from './contexts/CartContext';
 import ProductsPage from './pages/ProductsPage';
+import ContactUs from './pages/ContactUs/ContactUs';
 
 function App() {
   return (
     <CartProvider>
       <Router>
-      
+              
       <Routes>
         
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<ProductsPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contactanos" element={<ContactUs />} />
 
           {/* Protección de admins*/}
           <Route path="/admin" element={

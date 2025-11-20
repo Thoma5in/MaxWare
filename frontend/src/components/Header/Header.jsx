@@ -55,6 +55,7 @@ const Header = ({ toggleCart }) => {
           <ul>
             <li><Link to="/">Inicio</Link></li>
             <li><Link to="/productos">Productos</Link></li>
+            <li><Link to="/contactanos">Contactanos</Link></li>
           </ul>
         </nav>
 
