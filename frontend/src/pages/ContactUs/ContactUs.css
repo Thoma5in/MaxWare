@@ -1,0 +1,360 @@
+/* ContactUs.css */
+.contact-us {
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 2rem;
+    font-family: "Poppins", sans-serif;
+    max-width: 100%;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-right: 2rem;
+}
+
+.contact-header {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.contact-header h1 {
+    color: #2c2c2c;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ==================================== */
+/* Estilos de las Secciones             */
+/* ==================================== */
+
+.contact-section {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 25px;
+    transition: box-shadow 0.15s ease;
+}
+
+.contact-section:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contact-section h2 {
+    color: #2c2c2c;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* ==================================== */
+/* Sección de Teléfonos                 */
+/* ==================================== */
+
+.phone-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.phone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.phone-item strong {
+    color: #333;
+    font-size: 1rem;
+}
+
+.phone-number {
+    color: #555;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.phone-number:hover {
+    color: #f0ad4e;
+    text-decoration: underline;
+}
+
+.tour-hours {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.tour-hours p {
+    color: #888;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.hours {
+    color: #555;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+    margin: 25px 0;
+}
+
+/* ==================================== */
+/* Formulario de Contacto               */
+/* ==================================== */
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #c3e6cb;
+    font-size: 0.9rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    font-family: "Poppins", sans-serif;
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #f0ad4e;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-transform: uppercase;
+    align-self: center;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.submit-btn:hover {
+    background-color: #ec971f;
+}
+
+/* ==================================== */
+/* Contacto Alternativo                 */
+/* ==================================== */
+
+.alternative-contact {
+    background: #f8f9fa;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.contact-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.contact-option {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s ease;
+}
+
+.contact-option:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.contact-icon.whatsapp {
+    background: #25D366;
+}
+
+.contact-icon.email {
+    background: #555;
+}
+
+.contact-option h3 {
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.contact-option p {
+    color: #888;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.whatsapp-link {
+    background-color: #25D366;
+    color: white;
+    border: none;
+}
+
+.whatsapp-link:hover {
+    background-color: #128C7E;
+}
+
+.email-link {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.email-link:hover {
+    background-color: #e0e0e0;
+}
+
+/* ==================================== */
+/* Responsive Design                    */
+/* ==================================== */
+
+@media (max-width: 768px) {
+    .contact-us {
+        padding: 1rem;
+    }
+    
+    .contact-container {
+        padding-right: 0;
+    }
+    
+    .contact-section {
+        padding: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .phone-item {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .contact-options {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .contact-section {
+        padding: 15px;
+    }
+    
+    .contact-section h2 {
+        font-size: 1.1rem;
+    }
+    
+    .phone-item strong,
+    .phone-number {
+        font-size: 0.9rem;
+    }
+}
