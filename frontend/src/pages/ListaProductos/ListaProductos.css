@@ -66,7 +66,7 @@
 
 .producto-precio {
     /* El precio está en la tarjeta, pero el estilo de la foto no lo muestra */
-    display: none; /* Ocultamos si queremos replicar el estilo de la foto (donde el precio es $0) */
+    display: block; /* Cambiado de 'none' a 'block' para mostrar el precio */
     font-weight: 700;
     color: #555;
     font-size: 1.2rem;
