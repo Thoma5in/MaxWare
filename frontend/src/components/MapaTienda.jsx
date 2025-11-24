@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Circle} from 'react-leaflet';
+import Maplegend from './Maplegend';
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
 
@@ -37,6 +38,17 @@ const MapaTienda = () => {
                         
                     </Popup>
                 </Marker>
+
+                <Circle
+                    center={tiendaCoords}
+                    radius={3000} // metros
+                    pathOptions={{
+                    color: "blue",
+                    fillColor: "blue",
+                    fillOpacity: 0.1,
+                    }}
+                />
+                <Maplegend />
 
             </MapContainer>
         </div>
