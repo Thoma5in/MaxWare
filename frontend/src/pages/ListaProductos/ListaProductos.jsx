@@ -62,7 +62,7 @@ const ListaProductos = () => {
                     >
                         Price descending
                     </button>
-                    <button className="filter-button">Rating</button>
+                    {/* <button className="filter-button">Rating</button> */}
                 </div>
             </div>
             
