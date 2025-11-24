@@ -16,7 +16,6 @@ const ListaProductos = () => {
             try {
                 // Llamando a tu endpoint /productos
                 const respuesta = await api.get('/productos');
-                console.log(respuesta.data);
                 setProductos(respuesta.data);
             } catch (error) {
                 console.error("Error al obtener productos:", error);
@@ -71,8 +70,6 @@ const ListaProductos = () => {
             <div className="lista-productos"> 
                 {productosOrdenados.map(producto => (
                     <article className="producto-card" key={producto.id}>
-                        {/* 1. Imagen del producto */}
-                        {/* Asumo que 'image' es una URL a la imagen */}
                         <img 
                             src={producto.image_url || 'placeholder.jpg'} 
                             alt={producto.name} 
@@ -81,9 +78,10 @@ const ListaProductos = () => {
 
                         <div className="producto-card-body">
                             <h3 className="producto-nombre">{producto.name}</h3>
-                            {producto.price !== undefined && 
-                                <p className="producto-precio">${producto.price}</p>
-                            }
+                            <p className="producto-precio">
+                                ${producto.price !== undefined && producto.price !== null ? producto.price : 'N/A'}
+                            </p>
+
                             <p className="producto-descripcion">{producto.description}</p>
                             
                             {/* 2. Botón "add to car" */}
