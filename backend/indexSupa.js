@@ -1,7 +1,8 @@
+require('dotenv').config();
 const {supabase} = require('./supabaseClient');
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+
 
 const app = express();
 app.use(cors());
@@ -24,11 +25,11 @@ async function fetchAndLogProductos() {
 }
 
 // Llamada inicial para mostrar datos al arrancar
-fetchAndLogProductos();
+//fetchAndLogProductos();
 
-// Opcional: refrescar cada 30 segundos mientras el servidor está en marcha
-const REFRESH_MS = 50_000;
-setInterval(fetchAndLogProductos, REFRESH_MS);
+// refrescar cada 30 segundos mientras el servidor está en marcha
+//const REFRESH_MS = 50_000;
+//setInterval(fetchAndLogProductos, REFRESH_MS);
 
 
 app.get('/productos', async (req, res) => {
@@ -40,15 +41,13 @@ app.get('/productos', async (req, res) => {
             console.error('Error al obtener productos en GET /productos:', error);
             return res.status(500).json({ error: 'Error al obtener productos' });
         }
-        console.log('GET /productos ->', data);
+        //console.log('GET /productos ->', data);
         res.json(data);
     } catch (err) {
         console.error('Error al obtener productos desde Supabase:', err);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-
-
 
 
 const PORT = process.env.PORT || 4000;

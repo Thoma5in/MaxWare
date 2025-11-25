@@ -46,8 +46,27 @@
     gap: 10px;
     padding: 10px 0;
     border-bottom: 1px dashed #eee;
+    position: relative;
 }
+.item-remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #080808;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    transition: color 0.2s;}
 
+.item-remove-btn:hover {
+    color: #dc3545;}
 .item-img {
     width: 60px; /* Tamaño de la imagen del producto en el carrito */
     height: 60px;
@@ -56,6 +75,7 @@
 
 .item-details {
     flex-grow: 1;
+    padding-right:5px;
 }
 
 .item-controls button {
