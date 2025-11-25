@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabaseClient';
 import { validatePrice, validateStock } from './validation';
 import './PanelAdmin.css';
@@ -17,6 +18,11 @@ function PanelAdmin() {
         stock: '',
         category_id: ''
     })
+    const navigate = useNavigate();
+
+    const handleGoBack = () => {
+        navigate(-1); // Navega a la página anterior
+    };
 
     // Estado del tema
     const [theme, setTheme] = useState(() => {
@@ -185,10 +191,17 @@ function PanelAdmin() {
 
             <div className="admin-header">
                 <h1>Panel de Administrador</h1>
-                <button className="theme-toggle" onClick={toggleTheme}>
+                <div className='admin-actions'>
+
+                    <button className="theme-toggle" onClick={toggleTheme}>
                     {theme === 'light' ? '🌙' : '☀️'}
-                </button>
+                    </button>
+                    <button onClick={handleGoBack} className="btn-back">
+                        ← Volver
+                    </button>
+                </div>
             </div>
+            
 
             <form className="admin-form" onSubmit={handleSubmit}>
 
@@ -282,6 +295,7 @@ function PanelAdmin() {
                         <p>Stock: {p.stock}</p>
 
                         <button onClick={() => deleteProducts(p.id)}>Eliminar</button>
+                        <button onClick={() => navigate(`/admin/edit/${p.id}`)}>Editar</button>
                     </div>
                 ))}
             </div>

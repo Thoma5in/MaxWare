@@ -5,18 +5,26 @@
   "main": "indexSupa.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node indexSupa.js",
-    "dev": "nodemon indexSupa.js"
+    "start:db": "node indexSupa.js",
+    "start:mp": "node server.js",
+    "start:all": "concurrently \"npm run start:db\" \"npm run start:mp\"",
+    "start": "npm run start:all",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@supabase/supabase-js": "^2.81.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "mercadopago": "^2.10.1",
     "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

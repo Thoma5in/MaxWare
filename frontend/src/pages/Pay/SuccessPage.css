@@ -1,0 +1,44 @@
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Para centrar en la pantalla */
+    text-align: center;
+    padding: 20px;
+    font-family: sans-serif;
+    background-color: #f8f9fa; /* Fondo claro */
+}
+
+.success-container h1 {
+    color: #28a745; /* Verde para éxito */
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.success-container h2 {
+    color: #6c757d;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.success-container p {
+    color: #495057;
+    max-width: 600px;
+}
+
+.btn-go-home {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-go-home:hover {
+    background-color: #0056b3;
+}

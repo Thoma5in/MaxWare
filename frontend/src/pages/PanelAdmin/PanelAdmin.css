@@ -21,6 +21,27 @@
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+/*boton volver*/
+.btn-back {
+    background-color: #02284e;
+    color: #ffffff;
+    border: 1px solid #000000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: bold;
+}
+
+.btn-back:hover {
+    background-color: #2062a3;
+}
+/*contenedor de los botones*/
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 
 /* Tema Oscuro */
 .admin-container.dark {
