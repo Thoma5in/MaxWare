@@ -6,12 +6,16 @@ import './PanelAdmin.css';
 function PanelAdmin() {
     const [products, setProducts] = useState([]);
     const [imageFile, setImageFile] = useState(null);
+    const [categories, setCategories] = useState([]);
+    const [showCategoryForm, setShowCategoryForm] = useState(false);
+    const [newCategory, setNewCategory] = useState({ name: '', description: '' });
     const [form, setForm] = useState({
         name: '',
         price: '',
         description: '',
         image_url: '',
-        stock: ''
+        stock: '',
+        category_id: ''
     })
 
     // Estado del tema
@@ -39,13 +43,31 @@ function PanelAdmin() {
         setProducts(data);
     }
 
+    //Cargar categorias
+    const fetchCategories = async () => {
+        const { data } = await supabase
+            .from('categories')
+            .select('*');
+        setCategories(data || []);
+    }
+
     useEffect(() => {
         fetchProducts();
+        fetchCategories();
     }, [])
 
     //Manejar inputs
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        // Si el usuario selecciona la opción especial para crear una nueva categoría
+        if (name === 'category_id' && value === '__new__') {
+            setShowCategoryForm(true);
+            // mantener el select sin seleccionar hasta que se cree la categoría
+            setForm({ ...form, category_id: '' });
+            return;
+        }
+
+        setForm({ ...form, [name]: value });
     }
 
     //Manejar selección de imagen
@@ -54,6 +76,44 @@ function PanelAdmin() {
         if (file) {
             setImageFile(file);
         }
+    }
+
+    //Manejar inputs del formulario de nueva categoría
+    const handleNewCategoryChange = (e) => {
+        setNewCategory({ ...newCategory, [e.target.name]: e.target.value });
+    }
+
+    //Crear nueva categoría en Supabase
+    const createCategory = async (e) => {
+        e.preventDefault();
+        const name = (newCategory.name || '').trim();
+        if (!name) {
+            alert('El nombre de la categoría es requerido');
+            return;
+        }
+
+        const { data, error } = await supabase
+            .from('categories')
+            .insert([{ name, description: newCategory.description || '' }])
+            .select()
+            .single();
+
+        if (error) {
+            console.error(error);
+            alert('Error al crear la categoría: ' + error.message);
+            return;
+        }
+
+        // Agregar a la lista local y seleccionar la nueva categoría
+        setCategories((prev) => [...(prev || []), data]);
+        setForm((prev) => ({ ...prev, category_id: data.id }));
+        setNewCategory({ name: '', description: '' });
+        setShowCategoryForm(false);
+    }
+
+    const cancelCreateCategory = () => {
+        setNewCategory({ name: '', description: '' });
+        setShowCategoryForm(false);
     }
 
     //Crear producto en Supabase
@@ -93,7 +153,7 @@ function PanelAdmin() {
             imageUrl = publicUrl.publicUrl;
         }
 
-        const productData = { ...form, image_url: imageUrl };
+        const productData = { ...form, image_url: imageUrl, category_id: form.category_id ? Number(form.category_id) : null };
 
         const { error } = await supabase.from('products').insert([productData]);
         if (!error) {
@@ -102,7 +162,8 @@ function PanelAdmin() {
                 price: '',
                 description: '',
                 image_url: '',
-                stock: ''
+                stock: '',
+                category_id: ''
             });
             setImageFile(null);
             e.target.reset(); // Reset file input
@@ -158,6 +219,19 @@ function PanelAdmin() {
                     required
                 />
 
+                <select
+                    name="category_id"
+                    value={form.category_id}
+                    onChange={handleChange}
+                    required
+                >
+                    <option value="" disabled>Selecciona categoría</option>
+                    <option value="__new__">+ Crear nueva categoría</option>
+                    {categories?.map((c) => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                    ))}
+                </select>
+
                 <textarea
                     name="description"
                     placeholder="Descripción"
@@ -169,6 +243,34 @@ function PanelAdmin() {
 
                 <button type="submit">Agregar producto</button>
             </form>
+
+            {showCategoryForm && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <h3>Crear nueva categoría</h3>
+                        <form onSubmit={createCategory} className="new-cat-form">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Nombre de la categoría"
+                                value={newCategory.name}
+                                onChange={handleNewCategoryChange}
+                                required
+                            />
+                            <textarea
+                                name="description"
+                                placeholder="Descripción (opcional)"
+                                value={newCategory.description}
+                                onChange={handleNewCategoryChange}
+                            ></textarea>
+                            <div className="modal-actions">
+                                <button type="button" className="btn-cancel" onClick={cancelCreateCategory}>Cancelar</button>
+                                <button type="submit" className="btn-submit">Crear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
 
             <h2>Productos actuales</h2>
             <div className="products-list">

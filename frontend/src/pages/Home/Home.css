@@ -124,6 +124,10 @@ html, body {
   background: url("/public/assets/mapa-fondo.png") center/cover no-repeat;
 }
 
+.ubicacion h2 {
+  margin-bottom: 30px;
+}
+
 .mapa-container {
   width: 80%;
   margin: 20px auto;
@@ -144,5 +148,5 @@ html, body {
 }
 
 .btn-ubicacion:hover {
-  background-color: #a30000;
+  background-color: #facc4c;
 }
