@@ -2,12 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "indexSupa.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node indexSupa.js",
-    "dev": "nodemon index.js"
-
+    "dev": "nodemon indexSupa.js"
   },
   "keywords": [],
   "author": "",
