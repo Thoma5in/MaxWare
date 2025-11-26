@@ -64,14 +64,18 @@ app.get('/categorias', async (req, res) => {
             .from('categories')
             .select('*');
 
-        if (error) return res.status(500).json({ error });
+        if (error) {
+            console.error("Error al obtener categorías:", error);
+            return res.status(500).json({ error });
+        }
 
         res.json(data);
+
     } catch (err) {
+        console.error("Error en /categorias:", err);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
-
 
 const PORT = process.env.PORT || 4000;
 

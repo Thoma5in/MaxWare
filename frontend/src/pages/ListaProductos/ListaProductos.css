@@ -255,6 +255,8 @@
   margin-left: 6px;
 }
 
+
+
 /* Scrollbar suave en el sidebar (básico) */
 .sidebar-filtros::-webkit-scrollbar {
   width: 8px;

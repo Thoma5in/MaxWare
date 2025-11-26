@@ -11,6 +11,10 @@ const ListaProductos = () => {
     //Filtro de categorías
     const [categorias, setCategorias] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const [busqueda, setBusqueda] = useState("");
     // Estado para manejar el filtro de ordenamiento
     const [ordenamiento, setOrdenamiento] = useState('none'); 
 
@@ -65,8 +69,13 @@ const ListaProductos = () => {
         });
     };
 
+    const productosFiltrados = productos.filter(producto =>
+    producto.name.toLowerCase().includes(busqueda.toLowerCase()) ||
+    producto.description?.toLowerCase().includes(busqueda.toLowerCase())
+    );
+
     // Función para ordenar productos (simulación de filtros)
-    const productosOrdenados = [...productos].sort((a, b) => {
+    const productosOrdenados = [...productosFiltrados].sort((a, b) => {
         if (ordenamiento === 'price_asc') {
             return (a.price || 0) - (b.price || 0);
         }
@@ -81,7 +90,12 @@ const ListaProductos = () => {
         <div className="productos-container">
             {/* --- Sección de Filtros --- */}
             <div className="product-filters-row">
-                <input type="search" placeholder="Search" className="search-input" /> 
+                <input 
+                type="search" 
+                placeholder="Search" 
+                className="search-input" 
+                value={busqueda} 
+                onChange={(e) => setBusqueda(e.target.value)} /> 
                 <div className="filters-right">
                     <button className="filter-button new-button">✓ New</button>
                     <button 
@@ -100,8 +114,9 @@ const ListaProductos = () => {
             </div>
             {/* --- Lista de Productos --- */}
             <div className="lista-productos"> 
-
+                
                 {/* --- PANEL LATERAL DE FILTROS --- */}
+                <div className='layout-productos'>
             <aside className="sidebar-filtros">
 
                 <h2>Filtros</h2>
@@ -132,6 +147,7 @@ const ListaProductos = () => {
                     ))}
                 </div>
             </aside>
+            </div>
                 {productosOrdenados.map(producto => (
                     <article className="producto-card" key={producto.id} onClick={() => handleProductClick(producto)} style={{cursor:'pointer'}}>
                         <img 
