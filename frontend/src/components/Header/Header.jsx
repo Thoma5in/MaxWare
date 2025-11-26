@@ -11,6 +11,7 @@ const Header = ({ toggleCart }) => {
   const [User, setUser] = useState(null);
   const [role, setRole] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   // Obtener la información del carrito
@@ -88,21 +89,71 @@ const Header = ({ toggleCart }) => {
           {/* Botones de Autenticación Existentes */}
           {user ? (
             <>
-              <span className="welcome-text">
-                Bienvenido,{" "}
-                {user.user_metadata?.username ||
-                  user.email.split("@")[0] ||
-                  "Usuario"}
-              </span>
-              {/* Mostrar solo si es admin */}
-              {role === "admin" && (
-                <Link to="/admin" className="admin-btn" onClick={() => setIsMobileMenuOpen(false)}>
-                  Panel Admin
-                </Link>
-              )}
-              <button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} className="btn-logout">
-                Cerrar sesión
-              </button>
+              <div className="profile-menu-container">
+                <button
+                  className="profile-icon-btn"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  aria-label="Menú de usuario"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="profile-dropdown">
+                    <div className="dropdown-header">
+                      Hola, {user.user_metadata?.username || user.email.split("@")[0] || "Usuario"}
+                    </div>
+
+                    <Link
+                      to="/profile"
+                      className="dropdown-item"
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
+                      Perfil
+                    </Link>
+
+                    {role === "admin" && (
+                      <Link
+                        to="/admin"
+                        className="dropdown-item"
+                        onClick={() => {
+                          setIsDropdownOpen(false);
+                          setIsMobileMenuOpen(false);
+                        }}
+                      >
+                        Panel Admin
+                      </Link>
+                    )}
+
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsDropdownOpen(false);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="dropdown-item logout-btn"
+                    >
+                      Cerrar sesión
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>
@@ -121,8 +172,8 @@ const Header = ({ toggleCart }) => {
             </>
           )}
         </div>
-      </div>
-    </header>
+      </div >
+    </header >
   );
 };
 
