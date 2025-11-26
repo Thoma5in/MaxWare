@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {supabase} = require('./supabaseClient');
+const { supabase } = require('./supabaseClient');
 const express = require('express');
 const cors = require('cors');
 
@@ -35,15 +35,15 @@ async function fetchAndLogProductos() {
 app.get('/productos', async (req, res) => {
     try {
 
-        const {categoria} = req.query;
+        const { categoria } = req.query;
 
-         let query = supabase.from('products').select('*');
+        let query = supabase.from('products').select('*');
 
-         if (categoria) {
+        if (categoria) {
             query = query.eq('category_id', categoria);
-         }
+        }
 
-         
+
 
         const { data, error } = await query;
         if (error) {
@@ -77,10 +77,35 @@ app.get('/categorias', async (req, res) => {
     }
 });
 
+app.get('/profile/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+        if (error) {
+            console.error("Error al obtener perfil:", error);
+            return res.status(500).json({ error: error.message });
+        }
+
+        if (!data) {
+            return res.status(404).json({ error: 'Perfil no encontrado' });
+        }
+
+        res.json(data);
+    } catch (err) {
+        console.error("Error en /profile/:id:", err);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-  console.log(`Servidor conectado a Supabase escuchando en puerto ${PORT}`);
+    console.log(`Servidor conectado a Supabase escuchando en puerto ${PORT}`);
 });
 
 
