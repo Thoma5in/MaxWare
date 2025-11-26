@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext'; 
 import api from "../../services/api";
+import ProductDetail from '../../components/ProductDetail';
 import './ListaProductos.css';
 
 const ListaProductos = () => {
     const [productos, setProductos] = useState([]);
     // Usamos el hook de carrito
     const { addToCart } = useCart(); 
+    const [selectedProduct, setSelectedProduct] = useState(null);
     // Estado para manejar el filtro de ordenamiento
     const [ordenamiento, setOrdenamiento] = useState('none'); 
     
@@ -29,6 +31,21 @@ const ListaProductos = () => {
         addToCart(producto);
     };
 
+    // Mostrar detalle al hacer clic en la tarjeta
+    const handleProductClick = (producto) => {
+        setSelectedProduct({
+            ...producto,
+            image: producto.image_url || 'placeholder.jpg',
+            images: [
+                producto.image_url || 'placeholder.jpg',
+                producto.image_url || 'placeholder.jpg',
+                producto.image_url || 'placeholder.jpg',
+                producto.image_url || 'placeholder.jpg',
+            ],
+            title: producto.name,
+        });
+    };
+
     // Función para ordenar productos (simulación de filtros)
     const productosOrdenados = [...productos].sort((a, b) => {
         if (ordenamiento === 'price_asc') {
@@ -45,9 +62,7 @@ const ListaProductos = () => {
         <div className="productos-container">
             {/* --- Sección de Filtros --- */}
             <div className="product-filters-row">
-                {/* Asumo que ya tienes un componente de Búsqueda aquí */}
                 <input type="search" placeholder="Search" className="search-input" /> 
-
                 <div className="filters-right">
                     <button className="filter-button new-button">✓ New</button>
                     <button 
@@ -62,32 +77,26 @@ const ListaProductos = () => {
                     >
                         Price descending
                     </button>
-                    {/* <button className="filter-button">Rating</button> */}
                 </div>
             </div>
-            
             {/* --- Lista de Productos --- */}
             <div className="lista-productos"> 
                 {productosOrdenados.map(producto => (
-                    <article className="producto-card" key={producto.id}>
+                    <article className="producto-card" key={producto.id} onClick={() => handleProductClick(producto)} style={{cursor:'pointer'}}>
                         <img 
                             src={producto.image_url || 'placeholder.jpg'} 
                             alt={producto.name} 
                             className="producto-imagen"
                         />
-
                         <div className="producto-card-body">
                             <h3 className="producto-nombre">{producto.name}</h3>
                             <p className="producto-precio">
                                 ${producto.price !== undefined && producto.price !== null ? producto.price : 'N/A'}
                             </p>
-
                             <p className="producto-descripcion">{producto.description}</p>
-                            
-                            {/* 2. Botón "add to car" */}
                             <button 
                                 className="btn-add-to-cart"
-                                onClick={() => handleAddToCart(producto)}
+                                onClick={e => { e.stopPropagation(); handleAddToCart(producto); }}
                             >
                                 add to car
                             </button>
@@ -95,6 +104,14 @@ const ListaProductos = () => {
                     </article>
                 ))}
             </div>
+            {/* Modal de detalle */}
+            {selectedProduct && (
+                <ProductDetail 
+                    product={selectedProduct}
+                    onClose={() => setSelectedProduct(null)}
+                    onAddToCart={handleAddToCart}
+                />
+            )}
         </div>
     )
 }
