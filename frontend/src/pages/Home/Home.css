@@ -58,63 +58,182 @@ html, body {
 /* Sección Ofrecemos */
 .ofrecemos {
   background-color: #fffaf0;
-  padding: 40px 20px;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ofrecemos::before {
+  content: '';
+  position: absolute;
+  left: -75px;
+  top: -75px;
+  width: 200px;
+  height: 200px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+}
+
+.ofrecemos::after {
+  content: '';
+  position: absolute;
+  right: -75px;
+  bottom: -75px;
+  width: 230px;
+  height: 230px;
+  background-color: #D9D9D9;
+  border-radius: 50%;
+}
+
+.ofrecemos h2 {
+  font-size: 32px;
+  color: #2C2C2C;
+  margin-bottom: 40px;
 }
 
 .ofrecemos-container {
   display: flex;
   justify-content: center;
-  gap: 150px;
+  gap: 80px;
   margin-top: 40px;
   flex-wrap: wrap;
 }
 
 .ofrecemos-item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ofrecemos-item img {
-  width: 90px;
-  height: 90px;
-  margin-bottom: 10px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+  border: 20px solid #7B2D26;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: white;
+  /* Sombra interna para profundidad + dropshadow externo (sombra de margen) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.39));
+}
+
+/* utilidad reutilizable si la necesitas en otros elementos */
+.drop-shadow {
+  filter: drop-shadow(0 12px 18px rgb(0, 0, 0));
+  -webkit-filter: drop-shadow(0 12px 18px rgba(0,0,0,0.18));
+}
+
+.ofrecemos-item h3 {
+  font-size: 18px;
+  color: #2C2C2C;
+  font-weight: bold;
+  margin: 0;
 }
 
 /* Sección Categorías */
 .categorias {
-  background-color: #017e7e;
+  background-color: #017e7ee4;
   color: white;
   padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* decoraciones esquinas tipo la imagen */
+.categorias::before,
+.categorias::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.242);
+  border-radius: 12px;
+  transform: rotate(-15deg);
+}
+.categorias::before { left: 12px; top: 12px; }
+.categorias::after  { right: 12px; bottom: 12px; }
+
+/* título grande centrado */
+.categorias h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 6px;
+  color: #fffffffb;
+}
+
+/* contenedor de tarjetas: espacio y centrado para 4 elementos */
 .categorias-container {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: nowrap;
+  gap: 48px;
   margin-top: 30px;
-}
-
-.categoria-card {
-  text-align: center;
-}
-
-.categoria-card img {
-  width: 70px;
-  height: 70px;
-  margin-bottom: 10px;
-}
-
-.categoria-card {
-  background-color: #ffd700;
-  color: #8b0000;
-  padding: 20px;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-weight: bold;
+  flex-flow: row wrap;
+}
+
+/* cada tarjeta: anillo amarillo (borde), sombra y tamaño */
+.categoria-card {
+  width: 140px;
+  height: 140px;
+  position: sticky;
+  top: 4px; 
+  left: 10px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: transparent;
+
+  
+  border: 12px solid #ffd700; /* anillo amarillo */
+  border-radius: 50%;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  transition: transform .18s ease;
+}
+
+/* pequeño efecto hover */
+.categoria-card:hover {
+  transform: translateY(-6px);
+}
+
+/* imagen interior: fondo blanco circular dentro del anillo */
+.categoria-card img {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  top: 50px;
+  border-radius: 50%;
+  background: #ffffff00;
+  padding: 8px;
+  object-fit: contain;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0);
+  z-index: 6;
+  order: 0;
+  margin: 0;
+}
+
+/* forzar que el título quede debajo del ícono (aunque markup tenga h3 antes) */
+.categoria-card h3 {
+  order: 1;
+  margin: 0;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 75px;
+}
+
+/* responsivo: reducir tamaño en pantallas pequeñas */
+@media (max-width: 600px) {
+  .categorias-container { gap: 18px; }
+  .categoria-card { width: 110px; height: 110px; border-width: 10px; }
+  .categoria-card img { width: 64px; height: 64px; padding: 6px; }
+  .categorias h2 { font-size: 26px; }
 }
 
 /* Sección Ubicación */
