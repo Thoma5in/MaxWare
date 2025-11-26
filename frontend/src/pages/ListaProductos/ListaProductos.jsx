@@ -7,22 +7,42 @@ const ListaProductos = () => {
     const [productos, setProductos] = useState([]);
     // Usamos el hook de carrito
     const { addToCart } = useCart(); 
+    //Filtro de categorías
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
     // Estado para manejar el filtro de ordenamiento
     const [ordenamiento, setOrdenamiento] = useState('none'); 
+
+
+    useEffect(() => {
+        const obtenerCategorias = async () => {
+            try {
+                const res = await api.get('/categorias'); // Mi endpoint de categorías
+                setCategorias(res.data);
+            } catch (error) {
+                console.error("Error al obtener categorías:", error);
+            }
+        }
+        obtenerCategorias();
+    }, [])
     
 
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
                 // Llamando a tu endpoint /productos
-                const respuesta = await api.get('/productos');
+                const respuesta = await api.get('/productos', {
+                    params:{
+                        categoria: categoriaSeleccionada || undefined,
+                    }
+                }); 
                 setProductos(respuesta.data);
             } catch (error) {
                 console.error("Error al obtener productos:", error);
             }
         }
         obtenerProductos();
-    }, []);
+    }, [categoriaSeleccionada]);
 
     // Función para manejar el clic en "Agregar al Carrito"
     const handleAddToCart = (producto) => {
@@ -68,6 +88,38 @@ const ListaProductos = () => {
             
             {/* --- Lista de Productos --- */}
             <div className="lista-productos"> 
+
+                {/* --- PANEL LATERAL DE FILTROS --- */}
+            <aside className="sidebar-filtros">
+
+                <h2>Filtros</h2>
+
+                {/* Categorías */}
+                <h3>Categorías</h3>
+                <div className="filtro-categorias">
+                    <label>
+                        <input
+                            type="radio"
+                            value=""
+                            checked={categoriaSeleccionada === ""}
+                            onChange={() => setCategoriaSeleccionada("")}
+                        />
+                        <span className="radio-label">Todas</span>
+                    </label>
+
+                    {categorias.map(cat => (
+                        <label key={cat.id}>
+                            <input
+                                type="radio"
+                                value={cat.id}
+                                checked={categoriaSeleccionada == cat.id}
+                                onChange={() => setCategoriaSeleccionada(cat.id)}
+                            />
+                            <span className="radio-label">{cat.name}</span>
+                        </label>
+                    ))}
+                </div>
+            </aside>
                 {productosOrdenados.map(producto => (
                     <article className="producto-card" key={producto.id}>
                         <img 

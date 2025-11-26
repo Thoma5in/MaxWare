@@ -34,9 +34,18 @@ async function fetchAndLogProductos() {
 
 app.get('/productos', async (req, res) => {
     try {
-        const { data, error } = await supabase
-            .from('products')
-            .select('*');
+
+        const {categoria} = req.query;
+
+         let query = supabase.from('products').select('*');
+
+         if (categoria) {
+            query = query.eq('category_id', categoria);
+         }
+
+         
+
+        const { data, error } = await query;
         if (error) {
             console.error('Error al obtener productos en GET /productos:', error);
             return res.status(500).json({ error: 'Error al obtener productos' });
@@ -45,6 +54,20 @@ app.get('/productos', async (req, res) => {
         res.json(data);
     } catch (err) {
         console.error('Error al obtener productos desde Supabase:', err);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+app.get('/categorias', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('categories')
+            .select('*');
+
+        if (error) return res.status(500).json({ error });
+
+        res.json(data);
+    } catch (err) {
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
