@@ -39,5 +39,18 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- Antes de cerrar </body> -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+  // Inicialización si usas v2 en front
+  if (window && window.MercadoPago) {
+    try {
+      const mpPublicKey = "TEST-ac35cdf0-a359-4e4b-bbce-8c9a04aee56f"; // o usa process.env en build
+      window.mp = new MercadoPago(mpPublicKey, { locale: 'es-CO' });
+    } catch(e) {
+      console.error('Error inicializando MercadoPago SDK:', e);
+    }
+  }
+</script>
   </body>
 </html>

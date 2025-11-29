@@ -13,6 +13,7 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import SuccessPage from './pages/Pay/SuccessPage';
 import FailurePage from './pages/Pay/FailurePage';
 import Profile from './pages/Profile/Profile';
+import Pending from './pages/Pay/Pending';
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <Route path="/contactanos" element={<ContactUs />} />
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/failure" element={<FailurePage />} />
+          <Route path="/pending" element={<Pending />} />
+
           <Route path="/profile" element={<Profile />} />
           {/* Protección de admins*/}
           <Route path="/admin" element={
