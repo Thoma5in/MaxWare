@@ -47,7 +47,8 @@ async function sendTokenToBackend(tokenId) {
         const res = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token
+            // 🛑 CORRECCIÓN: Usar la variable 'tokenId' y cerrar el objeto correctamente
+            body: JSON.stringify({ tokenId }), 
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return await res.json();
