@@ -1,0 +1,171 @@
+.categorias-section {
+  position: relative;
+  padding: 40px 20px;
+  background: #0f9b96;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.categorias-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+/* ----------------------------------------------------- */
+/* SLIDER ESTILO NETFLIX (con spacers)                   */
+/* ----------------------------------------------------- */
+.categorias-slider {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  height: 240px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categorias-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-spacer {
+  flex: 0 0 48px;
+}
+
+/* ----------------------------------------------------- */
+/* CARDS                                                 */
+/* ----------------------------------------------------- */
+.categoria-card {
+  width: 140px;
+  min-width: 140px;
+  height: 200px;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transition: transform 0.25s ease;
+  transform-origin: center center; 
+  z-index: 1;
+}
+
+/*  HOVER SEGURO (NO ROMPE EL LAYOUT) */
+.categorias-slider:hover .categoria-card:hover {
+  transform: scale(1.05);
+  z-index: 20;
+}
+
+/*  Cuando NO hay hover en el slider → desactiva hover de cards parcialmente visibles */
+.categorias-slider:not(:hover) .categoria-card {
+  pointer-events: none;
+}
+
+/* Imagen */
+.categoria-circle {
+  width: 120px;
+  height: 120px;
+  border: 6px solid #ffd21f;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoria-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.categoria-name {
+  font-weight: bold;
+  font-size: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 22px;
+}
+
+/* ----------------------------------------------------- */
+/* FLECHAS NETFLIX                                       */
+/* ----------------------------------------------------- */
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.95);
+  color: #0f9b96;
+  font-size: 26px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  z-index: 30;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+
+/* Flechas aparecen cuando paso el mouse por el slider */
+.categorias-section:hover .slider-arrow {
+  opacity: 1;
+}
+
+.slider-arrow:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.15);
+}
+
+.slider-arrow.left { left: 10px; }
+.slider-arrow.right { right: 10px; }
+
+/* ----------------------------------------------------- */
+/* RESPONSIVE                                             */
+/* ----------------------------------------------------- */
+@media (max-width: 600px) {
+  .slider-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+}
+
+/* ----------------------------------------------------- */
+/* BOTÓN VER TODAS                                        */
+/* ----------------------------------------------------- */
+.ver-todas-btn {
+  margin-top: 30px;
+  background: white;
+  color: #0f9b96;
+  padding: 12px 26px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: 0.12s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.ver-todas-btn:hover {
+  background: #fff7e6;
+  transform: translateY(-2px);
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext'; 
 import api from "../../services/api";
 import ProductDetail from '../../components/ProductDetail';
+import {useLocation} from 'react-router-dom';
 import './ListaProductos.css';
 
 const ListaProductos = () => {
@@ -17,6 +18,10 @@ const ListaProductos = () => {
     const [busqueda, setBusqueda] = useState("");
     // Estado para manejar el filtro de ordenamiento
     const [ordenamiento, setOrdenamiento] = useState('none'); 
+    // Obtener categoría desde home
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const categoriaQuery = queryParams.get('categoria');
 
 
     useEffect(() => {
@@ -49,10 +54,19 @@ const ListaProductos = () => {
         obtenerProductos();
     }, [categoriaSeleccionada]);
 
+
+    useEffect(() => {
+        if (categoriaQuery) {
+            setCategoriaSeleccionada(categoriaQuery);
+        }
+    }, [categoriaQuery]);
+
+
     // Función para manejar el clic en "Agregar al Carrito"
     const handleAddToCart = (producto) => {
         addToCart(producto);
     };
+
 
     // Mostrar detalle al hacer clic en la tarjeta
     const handleProductClick = (producto) => {
@@ -69,10 +83,12 @@ const ListaProductos = () => {
         });
     };
 
+
     const productosFiltrados = productos.filter(producto =>
     producto.name.toLowerCase().includes(busqueda.toLowerCase()) ||
     producto.description?.toLowerCase().includes(busqueda.toLowerCase())
     );
+
 
     // Función para ordenar productos (simulación de filtros)
     const productosOrdenados = [...productosFiltrados].sort((a, b) => {
@@ -86,6 +102,7 @@ const ListaProductos = () => {
         return 0;
     });
 
+    
     return (
         <div className="productos-container">
             {/* --- Sección de Filtros --- */}
