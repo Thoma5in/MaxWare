@@ -23,35 +23,35 @@ const CategoriaSlider = ({ onSelectCategory }) => {
 
         const fileName = cat.name
             .toLowerCase()
-            .normalize('NFD') 
-            .replace(/[\u0300-\u036f]/g, '') 
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
             .replace(/ /g, "-") + ".png";
 
         return `/assets/categorias/${fileName}`;
     };
 
-    
+
     const scrollBy = (direction = 'right') => {
-    const el = sliderRef.current;
-    if (!el) return;
+        const el = sliderRef.current;
+        if (!el) return;
 
-    const amount = Math.round(el.clientWidth * 0.6);
+        const amount = Math.round(el.clientWidth * 0.6);
 
-    // límite izquierdo y derecho
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    const current = el.scrollLeft;
+        // límite izquierdo y derecho
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        const current = el.scrollLeft;
 
-    let target =
-        direction === "right"
-            ? current + amount
-            : current - amount;
+        let target =
+            direction === "right"
+                ? current + amount
+                : current - amount;
 
-    // No dejar pasar el límite
-    if (target < 0) target = 0;
-    if (target > maxScroll) target = maxScroll;
+        // No dejar pasar el límite
+        if (target < 0) target = 0;
+        if (target > maxScroll) target = maxScroll;
 
-    el.scrollTo({ left: target, behavior: "smooth" });
-};
+        el.scrollTo({ left: target, behavior: "smooth" });
+    };
 
     return (
         <section className="categorias-section">
@@ -68,11 +68,11 @@ const CategoriaSlider = ({ onSelectCategory }) => {
 
             {/* Contenedor de scroll */}
             <div className="categorias-slider" ref={sliderRef}>
-                <div className="slider-spacer"></div>
+
                 {categories.map((category) => (
                     <div
                         key={category.id}
-                        className="categoria-card"
+                        className="slider-card"
                         onClick={() => onSelectCategory(category.id)}
                     >
                         <div className="categoria-circle">

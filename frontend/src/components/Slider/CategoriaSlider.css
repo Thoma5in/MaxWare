@@ -1,7 +1,6 @@
 .categorias-section {
   position: relative;
   padding: 40px 20px;
-  background: #0f9b96;
   text-align: center;
   color: white;
   overflow: hidden;
@@ -17,14 +16,15 @@
 /* SLIDER ESTILO NETFLIX (con spacers)                   */
 /* ----------------------------------------------------- */
 .categorias-slider {
+  padding-top: 20px;
   display: flex;
   gap: 30px;
+  margin-top: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
   height: 240px;
-
   scrollbar-width: none;
-  -ms-overflow-style: none;
+
 }
 
 .categorias-slider::-webkit-scrollbar {
@@ -38,7 +38,7 @@
 /* ----------------------------------------------------- */
 /* CARDS                                                 */
 /* ----------------------------------------------------- */
-.categoria-card {
+.slider-card {
   width: 140px;
   min-width: 140px;
   height: 200px;
@@ -51,18 +51,18 @@
   text-align: center;
 
   transition: transform 0.25s ease;
-  transform-origin: center center; 
+  transform-origin: center center;
   z-index: 1;
 }
 
 /*  HOVER SEGURO (NO ROMPE EL LAYOUT) */
-.categorias-slider:hover .categoria-card:hover {
+.categorias-slider:hover .slider-card:hover {
   transform: scale(1.05);
   z-index: 20;
 }
 
 /*  Cuando NO hay hover en el slider → desactiva hover de cards parcialmente visibles */
-.categorias-slider:not(:hover) .categoria-card {
+.categorias-slider:not(:hover) .slider-card {
   pointer-events: none;
 }
 
@@ -110,7 +110,7 @@
   border-radius: 50%;
   border: none;
 
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   color: #0f9b96;
   font-size: 26px;
 
@@ -134,8 +134,13 @@
   transform: translateY(-50%) scale(1.15);
 }
 
-.slider-arrow.left { left: 10px; }
-.slider-arrow.right { right: 10px; }
+.slider-arrow.left {
+  left: 10px;
+}
+
+.slider-arrow.right {
+  right: 10px;
+}
 
 /* ----------------------------------------------------- */
 /* RESPONSIVE                                             */
@@ -162,7 +167,7 @@
   cursor: pointer;
   font-size: 1.05rem;
   transition: 0.12s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .ver-todas-btn:hover {
