@@ -19,8 +19,10 @@ const CategoriaSlider = ({ onSelectCategory }) => {
     }, []);
 
     const getCategoryImage = (cat) => {
-        if (cat.icon_url) return cat.icon_url;
-
+        //Tomar url de la categoría si existe
+        if (cat.img_categories) return cat.img_categories;
+        
+        //Si no, generar el nombre del archivo basado en el nombre de la categoría
         const fileName = cat.name
             .toLowerCase()
             .normalize('NFD')
