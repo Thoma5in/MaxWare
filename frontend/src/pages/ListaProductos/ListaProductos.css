@@ -1,24 +1,36 @@
 .productos-container {
-    padding: 2rem;
-    max-width: 100%; /* Ajustamos para el layout con sidebar */
-    padding-right: 2rem;
-    font-family: "Poppins", sans-serif;
+  padding: 2rem;
+  max-width: 100%;
+  /* Ajustamos para el layout con sidebar */
+  padding-right: 2rem;
+  font-family: "Poppins", sans-serif;
 }
 
 .productos-container h2 {
-    margin-bottom: 1rem;
-    text-align: left;
-    color: #2c2c2c;
+  margin-bottom: 1rem;
+  text-align: left;
+  color: #2c2c2c;
+}
+
+/* Contenedor Principal: Sidebar + Grid */
+.contenido-principal {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  /* Esto evita que el sidebar estire la altura de la grilla o viceversa */
 }
 
 /* Grid de tarjetas */
 .lista-productos {
-    display: grid;
-    /* Ajustamos el minmax para que las tarjetas sean más anchas como en la foto */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 20px; /* Aumentamos el gap */
-    align-items: stretch;
-    padding-top: 20px;
+  flex: 1;
+  /* Ocupa el espacio restante */
+  display: grid;
+  /* Ajustamos el minmax para que las tarjetas sean más anchas como en la foto */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  /* Aumentamos el gap */
+  align-items: stretch;
+  padding-top: 0;
 }
 
 /* ==================================== */
@@ -26,79 +38,87 @@
 /* ==================================== */
 
 .producto-card {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .producto-card:hover {
-    transform: none; /* Quitamos el efecto de levantamiento para ser más sobrios */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: none;
+  /* Quitamos el efecto de levantamiento para ser más sobrios */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Imagen del Producto */
 .producto-imagen {
-    width: 100%;
-    height: 180px; /* Altura fija para la imagen */
-    object-fit: cover; /* Ajuste para que la imagen no se distorsione */
+  width: 100%;
+  height: 180px;
+  /* Altura fija para la imagen */
+  object-fit: cover;
+  /* Ajuste para que la imagen no se distorsione */
 }
 
 .producto-card-body {
-    padding: 15px; /* Ajustamos padding */
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex: 1;
-    text-align: center; /* Centramos el contenido como en la foto */
+  padding: 15px;
+  /* Ajustamos padding */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  text-align: center;
+  /* Centramos el contenido como en la foto */
 }
 
 .producto-nombre {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #333;
-    font-weight: bold;
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: bold;
 }
 
 .producto-precio {
-    /* El precio está en la tarjeta, pero el estilo de la foto no lo muestra */
-    display: block; /* Cambiado de 'none' a 'block' para mostrar el precio */
-    font-weight: 700;
-    color: #555;
-    font-size: 1.2rem;
+  /* El precio está en la tarjeta, pero el estilo de la foto no lo muestra */
+  display: block;
+  /* Cambiado de 'none' a 'block' para mostrar el precio */
+  font-weight: 700;
+  color: #555;
+  font-size: 1.2rem;
 }
 
 .producto-descripcion {
-    margin: 0.25rem 0 10px;
-    color: #888;
-    font-size: 0.9rem;
-    flex: 1;
-    /* Quitamos el truncado para un mejor aspecto en la tarjeta */
-    overflow: visible; 
-    text-align: center;
+  margin: 0.25rem 0 10px;
+  color: #888;
+  font-size: 0.9rem;
+  flex: 1;
+  /* Quitamos el truncado para un mejor aspecto en la tarjeta */
+  overflow: visible;
+  text-align: center;
 }
 
 /* Botón "Add to Car" */
 .btn-add-to-cart {
-    background-color: #f0ad4e; /* Tonalidad amarilla/naranja de la foto */
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background-color 0.2s;
-    width: 100%; /* Ocupa todo el ancho */
-    margin-top: 10px;
+  background-color: #f0ad4e;
+  /* Tonalidad amarilla/naranja de la foto */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  width: 100%;
+  /* Ocupa todo el ancho */
+  margin-top: 10px;
 }
 
 .btn-add-to-cart:hover {
-    background-color: #ec971f;
+  background-color: #ec971f;
 }
 
 /* ==================================== */
@@ -106,49 +126,51 @@
 /* ==================================== */
 
 .product-filters-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
 .search-input {
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 300px;
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 300px;
 }
 
 .filters-right {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .filter-button {
-    background-color: #f1f1f1;
-    color: #333;
-    border: 1px solid #ddd;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .filter-button:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
 .filter-button.new-button {
-    background-color: #5cb85c; /* Verde para 'New' */
-    color: white;
-    border-color: #5cb85c;
+  background-color: #5cb85c;
+  /* Verde para 'New' */
+  color: white;
+  border-color: #5cb85c;
 }
 
 .filter-button.active {
-    background-color: #007bff; /* Azul para el filtro activo */
-    color: white;
-    border-color: #007bff;
+  background-color: #007bff;
+  /* Azul para el filtro activo */
+  color: white;
+  border-color: #007bff;
 }
 
 
@@ -157,8 +179,8 @@
   background: #ffffff;
   padding: 18px;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   height: auto;
   max-height: calc(100vh - 160px);
   overflow: auto;
@@ -202,7 +224,7 @@
 
 /* Hover de cada opción */
 .filtro-categorias label:hover {
-  background: rgba(243,184,50,0.08);
+  background: rgba(243, 184, 50, 0.08);
   transform: translateY(-1px);
 }
 
@@ -236,8 +258,9 @@
 /* estado checked */
 .filtro-categorias input[type="radio"]:checked {
   border-color: #f3b832;
-  box-shadow: 0 2px 6px rgba(243,184,50,0.12);
+  box-shadow: 0 2px 6px rgba(243, 184, 50, 0.12);
 }
+
 .filtro-categorias input[type="radio"]:checked::before {
   transform: scale(1);
 }
@@ -261,45 +284,56 @@
 .sidebar-filtros::-webkit-scrollbar {
   width: 8px;
 }
+
 .sidebar-filtros::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.08);
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 8px;
 }
 
 /* Responsive: en pantallas pequeñas el sidebar se vuelve parte del flujo */
 @media (max-width: 900px) {
+  .contenido-principal {
+    flex-direction: column;
+  }
+
   .sidebar-filtros {
     position: static;
     top: auto;
     max-height: none;
     width: 100%;
-    order: -1; /* mostrar arriba del listado */
+    /* order: -1;  Ya no es necesario porque en el HTML está primero */
     box-shadow: none;
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     margin-bottom: 12px;
   }
 
   .lista-productos {
+    width: 100%;
+    /* Aseguramos ancho completo en móvil */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 }
 
 /* Ajuste en pantallas pequeñas */
 @media (max-width: 768px) {
-    .productos-container {
-        padding: 1rem;
-        margin-left: 0; /* Deshabilita el margen lateral en móviles */
-    }
-    .product-filters-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .search-input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .filters-right {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .productos-container {
+    padding: 1rem;
+    margin-left: 0;
+    /* Deshabilita el margen lateral en móviles */
+  }
+
+  .product-filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .filters-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

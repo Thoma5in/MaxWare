@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useCart } from '../../contexts/CartContext'; 
+import { useCart } from '../../contexts/CartContext';
 import api from "../../services/api";
 import ProductDetail from '../../components/ProductDetail';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './ListaProductos.css';
 
 const ListaProductos = () => {
     const [productos, setProductos] = useState([]);
     // Usamos el hook de carrito
-    const { addToCart } = useCart(); 
+    const { addToCart } = useCart();
     //Filtro de categorías
     const [categorias, setCategorias] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
@@ -17,7 +17,7 @@ const ListaProductos = () => {
 
     const [busqueda, setBusqueda] = useState("");
     // Estado para manejar el filtro de ordenamiento
-    const [ordenamiento, setOrdenamiento] = useState('none'); 
+    const [ordenamiento, setOrdenamiento] = useState('none');
     // Obtener categoría desde home
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
@@ -35,17 +35,17 @@ const ListaProductos = () => {
         }
         obtenerCategorias();
     }, [])
-    
+
 
     useEffect(() => {
         const obtenerProductos = async () => {
             try {
                 // Llamando a tu endpoint /productos
                 const respuesta = await api.get('/productos', {
-                    params:{
+                    params: {
                         categoria: categoriaSeleccionada || undefined,
                     }
-                }); 
+                });
                 setProductos(respuesta.data);
             } catch (error) {
                 console.error("Error al obtener productos:", error);
@@ -85,8 +85,8 @@ const ListaProductos = () => {
 
 
     const productosFiltrados = productos.filter(producto =>
-    producto.name.toLowerCase().includes(busqueda.toLowerCase()) ||
-    producto.description?.toLowerCase().includes(busqueda.toLowerCase())
+        producto.name.toLowerCase().includes(busqueda.toLowerCase()) ||
+        producto.description?.toLowerCase().includes(busqueda.toLowerCase())
     );
 
 
@@ -102,26 +102,26 @@ const ListaProductos = () => {
         return 0;
     });
 
-    
+
     return (
         <div className="productos-container">
             {/* --- Sección de Filtros --- */}
             <div className="product-filters-row">
-                <input 
-                type="search" 
-                placeholder="Search" 
-                className="search-input" 
-                value={busqueda} 
-                onChange={(e) => setBusqueda(e.target.value)} /> 
+                <input
+                    type="search"
+                    placeholder="Search"
+                    className="search-input"
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)} />
                 <div className="filters-right">
                     <button className="filter-button new-button">✓ New</button>
-                    <button 
+                    <button
                         className={`filter-button ${ordenamiento === 'price_asc' ? 'active' : ''}`}
                         onClick={() => setOrdenamiento('price_asc')}
                     >
                         Price ascending
                     </button>
-                    <button 
+                    <button
                         className={`filter-button ${ordenamiento === 'price_desc' ? 'active' : ''}`}
                         onClick={() => setOrdenamiento('price_desc')}
                     >
@@ -129,68 +129,73 @@ const ListaProductos = () => {
                     </button>
                 </div>
             </div>
-            {/* --- Lista de Productos --- */}
-            <div className="lista-productos"> 
-                
+
+            {/* --- Contenido Principal (Sidebar + Grid) --- */}
+            <div className="contenido-principal">
+
                 {/* --- PANEL LATERAL DE FILTROS --- */}
                 <div className='layout-productos'>
-            <aside className="sidebar-filtros">
+                    <aside className="sidebar-filtros">
+                        <h2>Filtros</h2>
 
-                <h2>Filtros</h2>
+                        {/* Categorías */}
+                        <h3>Categorías</h3>
+                        <div className="filtro-categorias">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value=""
+                                    checked={categoriaSeleccionada === ""}
+                                    onChange={() => setCategoriaSeleccionada("")}
+                                />
+                                <span className="radio-label">Todas</span>
+                            </label>
 
-                {/* Categorías */}
-                <h3>Categorías</h3>
-                <div className="filtro-categorias">
-                    <label>
-                        <input
-                            type="radio"
-                            value=""
-                            checked={categoriaSeleccionada === ""}
-                            onChange={() => setCategoriaSeleccionada("")}
-                        />
-                        <span className="radio-label">Todas</span>
-                    </label>
+                            {categorias.map(cat => (
+                                <label key={cat.id}>
+                                    <input
+                                        type="radio"
+                                        value={cat.id}
+                                        checked={categoriaSeleccionada == cat.id}
+                                        onChange={() => setCategoriaSeleccionada(cat.id)}
+                                    />
+                                    <span className="radio-label">{cat.name}</span>
+                                </label>
+                            ))}
+                        </div>
+                    </aside>
+                </div>
 
-                    {categorias.map(cat => (
-                        <label key={cat.id}>
-                            <input
-                                type="radio"
-                                value={cat.id}
-                                checked={categoriaSeleccionada == cat.id}
-                                onChange={() => setCategoriaSeleccionada(cat.id)}
+                {/* --- Lista de Productos (Grid) --- */}
+                <div className="lista-productos">
+                    {productosOrdenados.map(producto => (
+                        <article className="producto-card" key={producto.id} onClick={() => handleProductClick(producto)} style={{ cursor: 'pointer' }}>
+                            <img
+                                src={producto.image_url || 'placeholder.jpg'}
+                                alt={producto.name}
+                                className="producto-imagen"
                             />
-                            <span className="radio-label">{cat.name}</span>
-                        </label>
+                            <div className="producto-card-body">
+                                <h3 className="producto-nombre">{producto.name}</h3>
+                                <p className="producto-precio">
+                                    ${producto.price !== undefined && producto.price !== null ? producto.price : 'N/A'}
+                                </p>
+                                <p className="producto-descripcion">{producto.description}</p>
+                                <button
+                                    className="btn-add-to-cart"
+                                    onClick={e => { e.stopPropagation(); handleAddToCart(producto); }}
+                                >
+                                    add to car
+                                </button>
+                            </div>
+                        </article>
                     ))}
                 </div>
-            </aside>
             </div>
-                {productosOrdenados.map(producto => (
-                    <article className="producto-card" key={producto.id} onClick={() => handleProductClick(producto)} style={{cursor:'pointer'}}>
-                        <img 
-                            src={producto.image_url || 'placeholder.jpg'} 
-                            alt={producto.name} 
-                            className="producto-imagen"
-                        />
-                        <div className="producto-card-body">
-                            <h3 className="producto-nombre">{producto.name}</h3>
-                            <p className="producto-precio">
-                                ${producto.price !== undefined && producto.price !== null ? producto.price : 'N/A'}
-                            </p>
-                            <p className="producto-descripcion">{producto.description}</p>
-                            <button 
-                                className="btn-add-to-cart"
-                                onClick={e => { e.stopPropagation(); handleAddToCart(producto); }}
-                            >
-                                add to car
-                            </button>
-                        </div>
-                    </article>
-                ))}
-            </div>
+
             {/* Modal de detalle */}
             {selectedProduct && (
-                <ProductDetail 
+                <ProductDetail
                     product={selectedProduct}
                     onClose={() => setSelectedProduct(null)}
                     onAddToCart={handleAddToCart}
