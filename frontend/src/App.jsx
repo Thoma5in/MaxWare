@@ -17,9 +17,9 @@ import Profile from './pages/Profile/Profile';
 function App() {
   return (
     <Router>
-      <CartProvider>        
-      <Routes>
-        
+      <CartProvider>
+        <Routes>
+
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<ProductsPage />} />
           <Route path="/login" element={<Login />} />
@@ -36,9 +36,9 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/about-us" element={<AboutUs />} />
-        
-      </Routes>
-    </CartProvider>
+
+        </Routes>
+      </CartProvider>
     </Router>
   );
 }
