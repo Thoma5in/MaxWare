@@ -21,26 +21,28 @@
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 /*boton volver*/
 .btn-back {
-    background-color: #02284e;
-    color: #ffffff;
-    border: 1px solid #000000;
-    padding: 10px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: bold;
+  background-color: #02284e;
+  color: #ffffff;
+  border: 1px solid #000000;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: bold;
 }
 
 .btn-back:hover {
-    background-color: #2062a3;
+  background-color: #2062a3;
 }
+
 /*contenedor de los botones*/
 .admin-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Tema Oscuro */
@@ -131,7 +133,8 @@
   border-color: var(--primary-color);
   box-shadow: 0 12px 30px rgba(243, 184, 50, 0.18);
   transform: translateY(-2px);
-  z-index: 10; /* que el control flote sobre elementos cercanos */
+  z-index: 10;
+  /* que el control flote sobre elementos cercanos */
 }
 
 /* Intento de mejorar la interacción con las opciones (no todos los navegadores permiten mucho estilo en <option>) */
@@ -144,7 +147,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,7 +161,7 @@
   border-radius: 10px;
   width: 98%;
   max-width: 420px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .modal h3 {
@@ -300,4 +303,269 @@
   .product-card img {
     height: 110px;
   }
+}
+
+/* Estilos específicos para el formulario de edición */
+.admin-edit-form {
+  background-color: var(--card-bg);
+  width: 90%;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: background-color 0.3s ease;
+}
+
+.admin-edit-form input[type="text"],
+.admin-edit-form input[type="number"],
+.admin-edit-form textarea,
+.admin-edit-form select,
+.admin-edit-form input[type="file"] {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-edit-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.admin-edit-form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--card-bg);
+  color: var(--text-color);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 98%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.05rem;
+}
+
+.new-cat-form input[type="text"],
+.new-cat-form textarea {
+  width: 90%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background: var(--primary-color);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.admin-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Botón agregar */
+.admin-form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-form button[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Lista de productos (grid) */
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* Tarjeta de producto en admin */
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--input-bg);
+}
+
+.product-card h3 {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.product-card p {
+  margin: 0;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+/* Botones dentro de la tarjeta */
+.product-card button {
+  margin-top: 0.6rem;
+  background-color: var(--delete-btn);
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.product-card button:hover {
+  background-color: var(--delete-hover);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .admin-container {
+    padding: 1rem;
+  }
+
+  .products-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-form {
+    padding: 1rem;
+  }
+
+  .product-card img {
+    height: 110px;
+  }
+}
+
+/* Estilos específicos para el formulario de edición */
+.admin-edit-form {
+  background-color: var(--card-bg);
+  width: 90%;
+  padding: 1rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: background-color 0.3s ease;
+}
+
+.admin-edit-form input[type="text"],
+.admin-edit-form input[type="number"],
+.admin-edit-form textarea,
+.admin-edit-form select,
+.admin-edit-form input[type="file"] {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-edit-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.admin-edit-form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: #1f1f1f;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem;
+  z-index: 10;
+
+}
+
+.btn-cancel {
+  color: white;
+}
+
+/* Barra de búsqueda */
+.search-bar-container {
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(243, 184, 50, 0.2);
 }
