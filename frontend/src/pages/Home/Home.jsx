@@ -3,8 +3,22 @@ import {Link} from 'react-router-dom';
 import MapaTienda from '../../components/MapaTienda';
 import './Home.css';
 import BaseLayout from '../../components/layout';
+import CategoriaSlider from '../../components/Slider/CategoriaSlider';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+    const navigate = useNavigate();
+
+    const irACategorias = (categoriaId, verTodas = false) => {
+        if (verTodas) {
+            navigate('/productos');
+            return
+        }
+        navigate(`/productos?categoria=${categoriaId}`)
+    }
+
+    
 
     const tiendaCoords = {lat: 3.565771, lng: -76.570714}; //Dapa, Yumbo
 
@@ -46,29 +60,7 @@ const Home = () => {
 
              {/* Sección de Categorías */}
              <section className ="categorias">
-                <h2>Categorías</h2>
-                <div className="categorias-container">
-                    <div className="categoria-card">
-                        <h3>Categoría 1</h3>
-                        <img src="/assets/categoria1.png" alt="Categoría 1" />
-
-                    </div>
-                    <div className="categoria-card">
-                        <h3>Categoría 2</h3>
-                        <img src="/assets/categoria2.png" alt="Categoría 2" />
-
-                    </div>
-                    <div className="categoria-card">
-                        <h3>Categoría 1</h3>
-                        <img src="/assets/categoria1.png" alt="Categoría 3" />
-
-                    </div>
-                    <div className="categoria-card">
-                        <h3>Categoría 2</h3>
-                        <img src="/assets/categoria2.png" alt="Categoría 4" />
-
-                    </div>
-                </div>
+                <CategoriaSlider onSelectCategory={irACategorias} />
              </section>
 
 
