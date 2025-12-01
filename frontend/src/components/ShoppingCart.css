@@ -132,3 +132,155 @@
     overflow-y: auto; /* Permite desplazamiento si la lista es muy larga */
     padding-bottom: 20px;
 }
+
+/* Estilos para el modal de recibo */
+.receipt-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.receipt-modal {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #007bff;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.receipt-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.close-receipt-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.receipt-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.receipt-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.receipt-section h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.receipt-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 0;
+}
+
+.client-info p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.client-info strong {
+    color: #333;
+}
+
+.receipt-items {
+    margin-bottom: 15px;
+}
+
+.receipt-item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.receipt-total strong {
+    font-weight: 700;
+}
+
+.receipt-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 2px solid #eee;
+    background-color: #f8f9fa;
+}
+
+.btn-cancel-receipt {
+    flex: 1;
+    padding: 10px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel-receipt:hover {
+    background-color: #5a6268;
+}
+
+.btn-confirm-receipt {
+    flex: 1;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-confirm-receipt:hover {
+    background-color: #218838;
+}
