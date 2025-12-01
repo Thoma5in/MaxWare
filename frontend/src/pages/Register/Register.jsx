@@ -8,6 +8,8 @@ function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [address, setAddress] = useState("")
+  const [number, setNumber] = useState("")
   const [message, setMessage] = useState("");
 
   const handleRegister = async (e) => {
@@ -22,6 +24,12 @@ function Register() {
 
     if (password !== confirmPassword) {
       setMessage("Las contraseñas no coinciden");
+      return;
+    }
+
+    // Validación del número (mínimo 10 dígitos)
+    if (!/^\d{10,}$/.test(number)) {
+      setMessage("El número debe tener al menos 10 dígitos y contener solo números.");
       return;
     }
 
@@ -45,6 +53,9 @@ function Register() {
         {
           id: user.id, // mismo id que usa Supabase Auth
           username: username,
+          email: email,
+          address: address,
+          number: number,
           created_at: new Date(),
         },
       ]);
@@ -55,7 +66,7 @@ function Register() {
       }
 
       //  Confirmación visual
-      setMessage("Registro exitoso. Revisa tu correo para confirmar tu cuenta.");
+      setMessage("Registro exitoso. Por favor revisa tu correo electrónico para confirmar tu cuenta antes de iniciar sesión.");
     } catch (err) {
       console.error("Error interno:", err);
       setMessage("Error interno del cliente.");
@@ -90,6 +101,26 @@ function Register() {
             placeholder="Ingresa tu usuario..."
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+
+          <label htmlFor="address">Dirección</label>
+          <input
+            type="text"
+            id="address"
+            placeholder="Ingresa tu dirección..."
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+
+          <label htmlFor="number">Número</label>
+          <input
+            type="text"
+            id="number"
+            placeholder="Ingresa tu número vinculado con nequi..."
+            value={number}
+            onChange = {(e) => setNumber(e.target.value.replace(/\D/g, ""))}
             required
           />
 

@@ -1,6 +1,5 @@
 import BaseLayout from "../../components/layout";
 import "./Profile.css";
-
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import api from '../../services/api';
@@ -63,16 +62,29 @@ const Profile = () => {
                     </div>
 
                     <div className="profile-details">
+
                         <div className="detail-item">
                             <span className="detail-label">Miembro desde</span>
                             <span className="detail-value">
                                 {profile?.created_at ? new Date(profile.created_at).toLocaleDateString() : 'N/A'}
                             </span>
                         </div>
+
                         <div className="detail-item">
                             <span className="detail-label">Email</span>
                             <span className="detail-value">{user?.email}</span>
                         </div>
+
+                        <div className="detail-item">
+                            <span className="detail-label">Dirección</span>
+                            <span className="detail-value">{profile?.address || "Sin dirección"}  </span>
+                        </div>
+
+                        <div className="detail-item">
+                            <span className="detail-label">Número</span>
+                            <span className="detail-value">{profile?.number || "Sin número"}  </span>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import CreateProductForm from './CreateProductForm';
 import CreateCategoryModal from './CreateCategoryModal';
 import EditProductModal from './EditProductModal';
 import ProductList from './ProductList';
+import NotificationsTable from './NotificationsTable';
 import './PanelAdmin.css';
 
 function PanelAdmin() {
@@ -120,6 +121,8 @@ function PanelAdmin() {
                 onDelete={deleteProducts}
                 onEdit={handleEditProduct}
             />
+
+            <NotificationsTable theme={theme} />
         </div>
     )
 }
