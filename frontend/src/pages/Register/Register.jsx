@@ -14,6 +14,12 @@ function Register() {
     e.preventDefault();
     setMessage("");
 
+    // Validación: longitud mínima de contraseña
+    if (password.length < 6) {
+      setMessage("La contraseña debe tener al menos 6 caracteres. Usa una combinación de letras, números y símbolos para mayor seguridad.");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setMessage("Las contraseñas no coinciden");
       return;
@@ -28,7 +34,7 @@ function Register() {
       });
 
       if (error) {
-        setMessage(`Error: ${error.message}`);
+        setMessage("Error: escribe un correo electrónico válido. (Ej: usuario@ejemplo.com)" );
         return;
       }
 
