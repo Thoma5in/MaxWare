@@ -10,7 +10,7 @@ console.log("PAYPAL_CLIENT_SECRET:", process.env.PAYPAL_CLIENT_SECRET);
 const app = express();
 const PORT = 3001; 
 
-app.use(cors({ origin: 'http://localhost:3000' })); 
+app.use(cors({ origin: 'https://max-ware.vercel.app' })); 
 app.use(bodyParser.json());
 
 if (!process.env.PAYPAL_CLIENT_ID || !process.env.PAYPAL_CLIENT_SECRET) {
@@ -63,8 +63,8 @@ app.post('/create-order', async (req, res) => {
         application_context: {
             brand_name: 'MaxWare',
             landing_page: 'BILLING',
-            return_url: 'http://localhost:3000/success',
-            cancel_url: 'http://localhost:3000/failure', 
+            return_url: 'https://max-ware.vercel.app/success',
+            cancel_url: 'https://max-ware.vercel.app/failure', 
         }
     });
 
