@@ -20,7 +20,7 @@ function Login() {
     });
 
     if (error) {
-      setMessage("Error: " + error.message);
+      setMessage("Error: su correo no existe, por favor cree uno." );
       return;
     }
 
