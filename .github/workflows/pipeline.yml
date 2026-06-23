@@ -1,0 +1,57 @@
+name: MaxWare CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  # VALIDAR EL FRONTEND (REACT)
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
+
+      - name: Instalar dependencias del Frontend
+        run: |
+          cd frontend
+          npm install
+
+      - name: Compilar Frontend (Build)
+        run: |
+          cd frontend
+          npm run build
+
+  #VALIDAR EL BACKEND (NODE.JS)
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: './backend/package-lock.json'
+
+      - name: Instalar dependencias del Backend
+        run: |
+          cd backend
+          npm install
+
+      #pruebas automatizadas en el backend
+      # - name: Ejecutar Pruebas
+      #   run: |
+          # cd backend
+          # npm test
