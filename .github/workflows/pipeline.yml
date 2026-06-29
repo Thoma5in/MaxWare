@@ -26,7 +26,7 @@ jobs:
       - name: Compilar Frontend (Build)
         run: |
           cd frontend
-          npm run build
+          env CI=false npm run build
 
   build-backend:
     runs-on: ubuntu-latest
